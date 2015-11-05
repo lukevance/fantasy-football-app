@@ -1,9 +1,14 @@
+
+
 //This is for myself---
 var qb = {
-  andyDalton: {player:"Andy Dalton", posRnk: 3, avgPts: 24, avgLstThree: 19},
-  tomBrady: {player:"Tom Brady", posRnk: 1, avgPts: 26, avgLstThree: 29},
-  benRoeth: {player:"Andy Dalton", posRnk: 3, avgPts: 24, avgLstThree: 19},
+  andyDalton: {player:"Andy Dalton", posRnk: 5, avgPts: 24.6, avgLstThree: 19},
+  tomBrady: {player:"Tom Brady", posRnk: 1, avgPts: 31.9, avgLstThree: 29},
+  benRoeth: {player:"Andy Dalton", posRnk: 3, avgPts: 17.8, avgLstThree: 19},
   peytonManning: {player:"Andy Dalton", posRnk: 3, avgPts: 24, avgLstThree: 19},
+  cPalmer: {player: "Carson Palmer", posRnk: 2, avgPts: 25.1, avgLstThree: 20},
+  aRodgers: {player: "Aaron Rodgers", posRnk: 7, avgPts: 23, avgLstThree: 18},
+  
 };
 
 var rb = {
