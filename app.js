@@ -8,17 +8,23 @@ var qb = {
   peytonManning: {player:"Andy Dalton", posRnk: 3, avgPts: 24, avgLstThree: 19},
   cPalmer: {player: "Carson Palmer", posRnk: 2, avgPts: 25.1, avgLstThree: 20},
   aRodgers: {player: "Aaron Rodgers", posRnk: 7, avgPts: 23, avgLstThree: 18},
-  
+
 };
 
 var rb = {
+  dFreeman: {player: "Devonta Freeman", posRnk: 1, avgPts: 21, avgLstThree: 18.3},
+  mIngram: {player: "Mark Ingram", posRnk: 2, avgPts: 13, avgLstThree: 16},
+  dMartin: {player: "Doug Martin", posRnk: 2, avgPts: 13, avgLstThree: 18.7},
+  cIvory: {player: "Chris Ivory", posRnk: 4, avgPts: 12, avgLstThree: 13},
+  aPeterson: {player: "Adrian Peterson", posRnk: 4, avgPts: 12, avgLstThree: 8.6},
+  lMiller: {player: "Lamar Miller", posRnk: 4, avgPts, avgLstThree: 20.6},
   lBell: {player:"Leveon Bell", posRnk: 5, avgPts: 11, avgLstThree: 11},
   lMurray: {player:"Latavius Murray", posRnk: 19, avgPts: 8, avgLstThree: 7},
 }
 
 var cmsh = {
   ownerName: "Mark",
-  qb1: {player: qb.andyDalton.player, rank: qb.andyDalton.posRnk},
+  qb1: {player: qb.aDalton},
   rb1: {player:"Leveon Bell", posRnk: 5, avgPts: 11, avgLstThree: 11},
   rb2: {name:"Latavius Murray", posRnk: 19, avgPts: 8, avgLstThree: 7},
   wr1: {name:"Dez Bryant" ,posRnk: 5, avgPts: 11, avgLstThree: 19}
