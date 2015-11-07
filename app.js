@@ -25,7 +25,7 @@ var rb = {
 var cmsh = {
   ownerName: "Mark",
   qb1: {player: qb.aDalton},
-  rb1: {player:"Leveon Bell", posRnk: 5, avgPts: 11, avgLstThree: 11},
+  rb1: {player: rb.lBell},
   rb2: {name:"Latavius Murray", posRnk: 19, avgPts: 8, avgLstThree: 7},
   wr1: {name:"Dez Bryant" ,posRnk: 5, avgPts: 11, avgLstThree: 19}
 };
