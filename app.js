@@ -28,6 +28,7 @@ var cmsh = {
   rb1: {player: rb.lBell},
   rb2: {name:"Latavius Murray", posRnk: 19, avgPts: 8, avgLstThree: 7},
   wr1: {name:"Dez Bryant" ,posRnk: 5, avgPts: 11, avgLstThree: 19}
+  wr2: {name:"Julian Edelman", posRnk: 9}
 };
 
 var hoth = {
@@ -35,6 +36,10 @@ var hoth = {
   rb1: "Adrian Peterson",
   rb2: "Dion Lewis",
   wr1: "Julio Jones",
+  wr2: "Jeremy Maclin",
+  te1: "Gary Barnidge",
+  dSt: "Patriots",
+  k: ""
 };
 
 function strengthCalcQb(teamOne, teamTwo){
