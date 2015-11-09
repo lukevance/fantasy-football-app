@@ -8,6 +8,7 @@ var qb = {
   peytonManning: {player:"Andy Dalton", posRnk: 3, avgPts: 24, avgLstThree: 19},
   cPalmer: {player: "Carson Palmer", posRnk: 2, avgPts: 25.1, avgLstThree: 20},
   aRodgers: {player: "Aaron Rodgers", posRnk: 7, avgPts: 23, avgLstThree: 18},
+  cNewton: {player: "Cam Newton", posRnk: 6, avgPts: 25, avgLstThree: 26}
 
 };
 
@@ -39,8 +40,13 @@ var hoth = {
   wr2: "Jeremy Maclin",
   te1: "Gary Barnidge",
   dSt: "Patriots",
-  k: ""
+  k: "S Lambo"
 };
+
+var tnr = {
+  qb1: qb.aRodgers;
+  rb1: rb.dFreeman;
+}
 
 function strengthCalcQb(teamOne, teamTwo){
   if (teamOne.qb1.rank < teamTwo.qb1.rank) {
