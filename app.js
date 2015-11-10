@@ -18,7 +18,7 @@ var rb = {
   dMartin: {player: "Doug Martin", posRnk: 2, avgPts: 13, avgLstThree: 18.7},
   cIvory: {player: "Chris Ivory", posRnk: 4, avgPts: 12, avgLstThree: 13},
   aPeterson: {player: "Adrian Peterson", posRnk: 4, avgPts: 12, avgLstThree: 8.6},
-  lMiller: {player: "Lamar Miller", posRnk: 4, avgPts, avgLstThree: 20.6},
+  lMiller: {player: "Lamar Miller", posRnk: 4, avgPts: 17, avgLstThree: 20.6},
   lBell: {player:"Leveon Bell", posRnk: 5, avgPts: 11, avgLstThree: 11},
   lMurray: {player:"Latavius Murray", posRnk: 19, avgPts: 8, avgLstThree: 7},
 }
@@ -61,3 +61,6 @@ function strengthCalcQb(teamOne, teamTwo){
 
 }
 strengthCalcQb(cmsh, hoth);
+
+
+// funcion to compare between groups
