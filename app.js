@@ -2,14 +2,16 @@
 
 //This is for myself---
 var qb = {
-  andyDalton: {player:"Andy Dalton", posRnk: 5, avgPts: 24.6, avgLstThree: 19},
-  tomBrady: {player:"Tom Brady", posRnk: 1, avgPts: 31.9, avgLstThree: 29},
-  benRoeth: {player:"Andy Dalton", posRnk: 3, avgPts: 17.8, avgLstThree: 19},
+  andyDalton: {player:"Andy Dalton", posRnk: 4, avgPts: 24.9, avgLstThree: 19},
+  tomBrady: {player:"Tom Brady", posRnk: 1, avgPts: 30.5, avgLstThree: 29},
+  benRoeth: {player:"Ben Roethlisberger", posRnk: 3, avgPts: 17.8, avgLstThree: 19},
   peytonManning: {player:"Andy Dalton", posRnk: 3, avgPts: 24, avgLstThree: 19},
   cPalmer: {player: "Carson Palmer", posRnk: 2, avgPts: 25.1, avgLstThree: 20},
-  aRodgers: {player: "Aaron Rodgers", posRnk: 7, avgPts: 23, avgLstThree: 18},
-  cNewton: {player: "Cam Newton", posRnk: 6, avgPts: 25, avgLstThree: 26}
-
+  aRodgers: {player: "Aaron Rodgers", posRnk: 2, avgPts: 25.1, avgLstThree: 18},
+  cNewton: {player: "Cam Newton", posRnk: 6, avgPts: 23.9, avgLstThree: 26}
+  pRivers: {player: "Phillip Rivers", posRnk: 5, avgPts: 24.2},
+  dCarr: {player: "Derek Carr", posRnk: 7, avgPts: 23},
+  dBrees: {player:"Drew Brees", posRnk: 8, avgPts: 22.7}
 };
 
 var rb = {
@@ -21,14 +23,14 @@ var rb = {
   lMiller: {player: "Lamar Miller", posRnk: 4, avgPts: 17, avgLstThree: 20.6},
   lBell: {player:"Leveon Bell", posRnk: 5, avgPts: 11, avgLstThree: 11},
   lMurray: {player:"Latavius Murray", posRnk: 19, avgPts: 8, avgLstThree: 7},
-}
+};
 
 var cmsh = {
   ownerName: "Mark",
   qb1: {player: qb.aDalton},
   rb1: {player: rb.lBell},
   rb2: {name:"Latavius Murray", posRnk: 19, avgPts: 8, avgLstThree: 7},
-  wr1: {name:"Dez Bryant" ,posRnk: 5, avgPts: 11, avgLstThree: 19}
+  wr1: {name:"Dez Bryant" ,posRnk: 5, avgPts: 11, avgLstThree: 19},
   wr2: {name:"Julian Edelman", posRnk: 9}
 };
 
@@ -64,3 +66,23 @@ strengthCalcQb(cmsh, hoth);
 
 
 // funcion to compare between groups
+
+
+
+
+
+
+
+// power ranking
+// player weights: find out by comparing point differential in winning choices and losing choices
+    // tier 1:
+      // qb (top5 avg score) /
+      // rb1
+      // rb2
+    // tier 2:
+      // rb2:
+      // wr2:
+      // flex:
+      // te:
+      //
+  // combination of current streak,
