@@ -14,12 +14,14 @@ const saveFile = (path, content) => {
 // This is a weekly rank retriever, it pulls ranks and creates corresponding html pages
 
 let baseURL = 'http://games.espn.com/ffl/leaders';
-let env = {
+let params = {
     league: 286565,
-    team: 7
+    team: 7,
+    season: 2017,
+    week: 1
 }
 
-let params = '?leagueId=286565&teamId=7&scoringPeriodId=2&seasonId=2017&slotCategoryId=2';
+// '?leagueId=286565&teamId=7&scoringPeriodId=1&seasonId=2017&slotCategoryId=2';
 
 let positions = {
     QB: 0,
@@ -30,14 +32,27 @@ let positions = {
 let week = 2;
 
 // get position ranks for week
-const getRanks = async() => {
-    const res = await fetch(baseURL + params);
+const getRanks = async(week, position) => {
+    let posId;
+    switch (position) {
+        case 'QB':
+            posId = 0;
+            break;
+        case 'RB':
+            posId = 2;
+            break;
+        default:
+            posId = 1;
+            position = 'Top50';
+            break;
+    }
+    const res = await fetch(baseURL + '?leagueId=' + params.league + '&teamId=' + params.team + '&scoringPeriod=' + week + '&seasonId=' + params.season + 'slotCategoryId=' + posId);
     const html = await res.text();
     // await console.log(html);
-    await saveFile('./data/rb_ranks.html', html);
+    await saveFile('./data/weekly_ranks/week_' + week + '/' + position + '_ranks.html', html);
 };
 
-getRanks();
+getRanks(1, 'QB');
 
 
 
