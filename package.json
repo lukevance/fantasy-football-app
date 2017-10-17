@@ -1,24 +1,25 @@
 {
-  "name": "fantasy-football-app",
-  "version": "1.0.0",
-  "description": "Fantasy football calculator app - full description coming soon",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/lukevance/fantasy-football-app.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/lukevance/fantasy-football-app/issues"
-  },
-  "homepage": "https://github.com/lukevance/fantasy-football-app#readme",
-  "dependencies": {
-    "cheerio": "^1.0.0-rc.2",
-    "htmlparser": "^1.7.7",
-    "htmlparser2": "^3.9.2"
-  }
+    "name": "fantasy-football-app",
+    "version": "1.0.0",
+    "description": "Fantasy football calculator app - full description coming soon",
+    "main": "app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/lukevance/fantasy-football-app.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/lukevance/fantasy-football-app/issues"
+    },
+    "homepage": "https://github.com/lukevance/fantasy-football-app#readme",
+    "dependencies": {
+        "cheerio": "^1.0.0-rc.2",
+        "htmlparser": "^1.7.7",
+        "htmlparser2": "^3.9.2",
+        "node-fetch": "^1.7.3"
+    }
 }
