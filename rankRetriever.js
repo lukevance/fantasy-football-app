@@ -49,12 +49,10 @@ const getRanks = async(week, position) => {
     const res = await fetch(baseURL + '?leagueId=' + params.league + '&teamId=' + params.team + '&scoringPeriod=' + week + '&seasonId=' + params.season + 'slotCategoryId=' + posId);
     const html = await res.text();
     // await console.log(html);
-    await saveFile('./data/weekly_ranks/week_' + week + '/' + position + '_ranks.html', html);
+    // await
+    // if (
+    return html;
+    // await saveFile('./data/weekly_ranks/week_' + week + '/' + position + '_ranks.html', html);
 };
 
-getRanks(1, 'QB');
-
-
-
-
-// create file
+module.exports = getRanks;
