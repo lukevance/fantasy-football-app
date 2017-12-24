@@ -5,22 +5,24 @@ const cookies = {
     SWID: '{A98E24CD-3438-4EF3-BD20-4F6682B70FD1}'
 };
 
-const getLeagueStandings = async(leagueId) => {
-    console.log(await espnFF.getLeagueStandings(cookies, leagueId));
-    return;
-};
-
-const getActiveRoster = async(leagueId, teamId, week) => {
+const getSimpleActiveRoster = async(leagueId, teamId, week) => {
     let weekRoster = await espnFF.getSingleTeamLineup(cookies, leagueId, teamId, week);
-    let simpleRoster = weekRoster[0].players.map(playerObj => {
-        return {
-            "name": playerObj.player.firstName + " " + playerObj.player.lastName,
-            "position": playerObj.player.defaultPositionId,
-            "activePosition": playerObj.slotCategoryId,
-            "points": playerObj.currentPeriodRealStats.appliedStatTotal
-        };
-    });
+    const simpleRoster = {
+        "team": weekRoster[0].teamName,
+        "points": weekRoster[0].realPoints,
+        "roster": weekRoster[0].players.map(playerObj => {
+            return {
+                "name": playerObj.player.firstName + " " + playerObj.player.lastName,
+                "position": playerObj.player.defaultPositionId,
+                "activePosition": playerObj.slotCategoryId,
+                "points": playerObj.currentPeriodRealStats.appliedStatTotal
+            };
+        }).filter(player => player.activePosition < 20),
+        // TODO: add "bench": total bench points
+    };
     console.log(simpleRoster);
 };
 
-getActiveRoster('286565', '7', '15');
+// getSimpleActiveRoster('286565', '7', '15');
+
+module.exports = getSimpleActiveRoster;
