@@ -1,10 +1,13 @@
 {
     "name": "fantasy-football-app",
-    "version": "1.0.0",
+    "version": "0.1.0",
     "description": "Fantasy football calculator app - full description coming soon",
     "main": "app.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test --env=jsdom",
+        "eject": "react-scripts eject"
     },
     "repository": {
         "type": "git",
@@ -17,10 +20,10 @@
     },
     "homepage": "https://github.com/lukevance/fantasy-football-app#readme",
     "dependencies": {
-        "cheerio": "^1.0.0-rc.2",
         "espn-ff-api": "^1.0.8",
-        "htmlparser": "^1.7.7",
-        "htmlparser2": "^3.9.2",
-        "node-fetch": "^1.7.3"
+        "node-fetch": "^1.7.3",
+        "react": "^16.2.0",
+        "react-dom": "^16.2.0",
+        "react-scripts": "1.0.17"
     }
 }
