@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
 import Paper from 'material-ui/Paper';
+import Button from "material-ui/Button";
+import scoreBoard from './scoreboardReader';
+
 
 const styles = theme => ({
   root: {
@@ -17,10 +20,17 @@ const styles = theme => ({
 });
 
 let id = 0;
-function createData(name, calories, fat, carbs, protein) {
+function createData(name, qb, rb, wr, te, d, k) {
   id += 1;
-  return { id, name, calories, fat, carbs, protein };
+  return { id, name, qb, rb, wr, te, d, k };
 }
+
+const getScoreBoard = async () => {
+    // let scoreboardData = await scoreBoard('286565', '7', '15');
+    console.log(scoreBoard);
+};
+
+// getScoreBoard();
 
 const data = [
   createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
@@ -38,11 +48,13 @@ function BasicTable(props) {
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell numeric>Calories</TableCell>
-            <TableCell numeric>Fat (g)</TableCell>
-            <TableCell numeric>Carbs (g)</TableCell>
-            <TableCell numeric>Protein (g)</TableCell>
+            <TableCell>Team</TableCell>
+            <TableCell numeric>QB</TableCell>
+            <TableCell numeric>RB</TableCell>
+            <TableCell numeric>WR</TableCell>
+            <TableCell numeric>TE</TableCell>
+            <TableCell numeric>D/ST</TableCell>
+            <TableCell numeric>K</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -50,15 +62,25 @@ function BasicTable(props) {
             return (
               <TableRow key={n.id}>
                 <TableCell>{n.name}</TableCell>
-                <TableCell numeric>{n.calories}</TableCell>
-                <TableCell numeric>{n.fat}</TableCell>
-                <TableCell numeric>{n.carbs}</TableCell>
-                <TableCell numeric>{n.protein}</TableCell>
+                <TableCell numeric>{n.qb}</TableCell>
+                <TableCell numeric>{n.rb}</TableCell>
+                <TableCell numeric>{n.wr}</TableCell>
+                <TableCell numeric>{n.te}</TableCell>
+                <TableCell numeric>{n.d}</TableCell>
+                <TableCell numeric>{n.k}</TableCell>
               </TableRow>
             );
           })}
         </TableBody>
       </Table>
+      <Button 
+            raised 
+            onClick={function(){
+                getScoreBoard();
+            }}
+        >
+            Get Data
+      </Button>
     </Paper>
   );
 }

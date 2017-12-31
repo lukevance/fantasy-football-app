@@ -4,6 +4,14 @@ import Button from "material-ui/Button";
 import NavBar from "./NavBar";
 import ScoreTable from "./ScoreTable";
 import './App.css';
+import scoreboardReader from './scoreboardReader';
+
+// console.log(scoreboardReader('286565', '7', '15'));
+const getScoreBoard = async () => {
+    // let scoreboard = await scoreboardReader('286565', '7', '15');
+    console.log(scoreboardReader());
+};
+
 
 class App extends Component {
   render() {
@@ -17,13 +25,12 @@ class App extends Component {
         />
         <Button 
             raised 
-            color="primary"
-            style={{
-                marginTop: "20px"
+            onClick={function(){
+                getScoreBoard();
             }}
         >
-            Hello World
-        </Button>
+            Get Data
+      </Button>
       </div>
     );
   }
