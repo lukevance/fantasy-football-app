@@ -1,21 +1,44 @@
-const espnFF = require('espn-ff-api');
+const fetch = require('node-fetch');
 
-const cookies = {
-    espnS2: 'AEC2sSHBCne0Fhg2vh%2FOIr%2BKrXTT3BeM0wH4RN7dwSlTx4JOhuA67pheDVaevS58VI6opLwFKN0DJaemYx3T65d8l8irHx%2B1luWzYT1RIAowvjiujzaDIoxjkeSyKcB09m5DLQ6fEcqL8Y2y6Tbyy9vuahebVvPPrx2Fhqnzph5P2hCRDHNlH40nXC7w0eSH2j627wFTRGZyCddpcWkRLEHwP9TGSf9aMhNsL6d4Hjnk7%2F1%2B1A1XGaMUG3rSJwOi00aI3KwNwwi%2FGmgvAIjnmxfP',
-    SWID: '{A98E24CD-3438-4EF3-BD20-4F6682B70FD1}'
-};
+const request = async (url, options) => {
+    const response = await fetch(url);
+    const json = await response.json();
+    //console.log(json);
+    return json;
+}
+
+const getBoxScore = async (leagueId, teamId, scoringPeriodId) => {
+  let url = 'http://games.espn.com/ffl/api/v2/boxscore?leagueId=' + leagueId + '&teamId=' + teamId + '&scoringPeriodId=' + scoringPeriodId + '&seasonId=2017';
+  const res = await request(url);
+  return res;
+}
+
+const getLineups = async (leagueId, teamId, scoringPeriodId) => {
+  const lineups = await getBoxScore(leagueId, teamId, scoringPeriodId);
+  return lineups.boxscore.teams;
+}
+
+const getSingleTeamLineup = async (leagueId, teamId, scoringPeriodId) => {
+  const lineups = await getLineups(leagueId, teamId, scoringPeriodId);
+  const single = lineups.filter(lineup => lineup.team.teamId == teamId);
+  //console.log(single);  
+  return single;
+}
+
 
 const getSimpleActiveRoster = async(leagueId, teamId, week) => {
-    let weekRoster = await espnFF.getSingleTeamLineup(cookies, leagueId, teamId, week);
-    const simpleRoster = {
-        "team": weekRoster[0].teamName,
-        "points": weekRoster[0].realPoints,
-        "roster": weekRoster[0].players.map(playerObj => {
+    let weekRoster = await getSingleTeamLineup(leagueId, teamId, week);
+  //  console.log(weekRoster);    
+
+const simpleRoster = {
+        "team": weekRoster[0].team.teamLocation + " " + weekRoster[0].team.teamNickname,
+        "points": weekRoster[0].appliedActiveRealTotal,
+        "roster": weekRoster[0].slots.map(playerObj => {
             return {
                 "name": playerObj.player.firstName + " " + playerObj.player.lastName,
                 "position": playerObj.player.defaultPositionId,
                 "activePosition": playerObj.slotCategoryId,
-                "points": playerObj.currentPeriodRealStats.appliedStatTotal
+               "points": playerObj.currentPeriodRealStats.appliedStatTotal
             };
         }).filter(player => player.activePosition < 20),
         // TODO: add "bench": total bench points
@@ -23,6 +46,6 @@ const getSimpleActiveRoster = async(leagueId, teamId, week) => {
     console.log(simpleRoster);
 };
 
-// getSimpleActiveRoster('286565', '7', '15');
+//getSimpleActiveRoster('286565', '7', '15');
 
 module.exports = getSimpleActiveRoster;
