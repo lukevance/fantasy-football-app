@@ -8,8 +8,8 @@ import scoreboardReader from './scoreboardReader';
 
 // console.log(scoreboardReader('286565', '7', '15'));
 const getScoreBoard = async () => {
-    // let scoreboard = await scoreboardReader('286565', '7', '15');
-    console.log(scoreboardReader());
+    let scoreboard = await scoreboardReader('286565', '7', '15');
+    console.log(scoreboard);
 };
 
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
@@ -26,8 +26,8 @@ function createData(name, qb, rb, wr, te, d, k) {
 }
 
 const getScoreBoard = async () => {
-    // let scoreboardData = await scoreBoard('286565', '7', '15');
-    console.log(scoreBoard);
+    let scoreboardData = await scoreBoard('286565', '7', '15');
+    console.log(scoreboardData);
 };
 
 // getScoreBoard();
@@ -40,49 +40,63 @@ const data = [
   createData('Gingerbread', 356, 16.0, 49, 3.9),
 ];
 
-function BasicTable(props) {
-  const { classes } = props;
+// function BasicTable(props) {
+class BasicTable extends Component {
+  constructor(props){
+    super(props);
+    this.state = {};
+    this.getScoreBoard = this.getScoreBoard.bind(this);
+  }
 
-  return (
-    <Paper className={classes.root}>
-      <Table className={classes.table}>
-        <TableHead>
-          <TableRow>
-            <TableCell>Team</TableCell>
-            <TableCell numeric>QB</TableCell>
-            <TableCell numeric>RB</TableCell>
-            <TableCell numeric>WR</TableCell>
-            <TableCell numeric>TE</TableCell>
-            <TableCell numeric>D/ST</TableCell>
-            <TableCell numeric>K</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {data.map(n => {
-            return (
-              <TableRow key={n.id}>
-                <TableCell>{n.name}</TableCell>
-                <TableCell numeric>{n.qb}</TableCell>
-                <TableCell numeric>{n.rb}</TableCell>
-                <TableCell numeric>{n.wr}</TableCell>
-                <TableCell numeric>{n.te}</TableCell>
-                <TableCell numeric>{n.d}</TableCell>
-                <TableCell numeric>{n.k}</TableCell>
-              </TableRow>
-            );
-          })}
-        </TableBody>
-      </Table>
-      <Button 
-            raised 
-            onClick={function(){
-                getScoreBoard();
-            }}
-        >
-            Get Data
-      </Button>
-    </Paper>
-  );
+  getScoreBoard = async () => {
+    let scoreboardData = await scoreBoard('286565', '7', '15');
+    console.log(scoreboardData);
+};
+
+  render(){
+    const { classes } = this.props;
+    return (
+      <Paper className={classes.root}>
+        <Table className={classes.table}>
+          <TableHead>
+            <TableRow>
+              <TableCell>Team</TableCell>
+              <TableCell numeric>QB</TableCell>
+              <TableCell numeric>RB</TableCell>
+              <TableCell numeric>WR</TableCell>
+              <TableCell numeric>TE</TableCell>
+              <TableCell numeric>D/ST</TableCell>
+              <TableCell numeric>K</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {data.map(n => {
+              return (
+                <TableRow key={n.id}>
+                  <TableCell>{n.name}</TableCell>
+                  <TableCell numeric>{n.qb}</TableCell>
+                  <TableCell numeric>{n.rb}</TableCell>
+                  <TableCell numeric>{n.wr}</TableCell>
+                  <TableCell numeric>{n.te}</TableCell>
+                  <TableCell numeric>{n.d}</TableCell>
+                  <TableCell numeric>{n.k}</TableCell>
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+        <Button 
+              raised 
+              onClick={function(){
+                  this.getScoreBoard();
+              }}
+          >
+              Get Data
+        </Button>
+      </Paper>
+    );
+  }
+  
 }
 
 BasicTable.propTypes = {
