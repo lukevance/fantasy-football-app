@@ -53,6 +53,4 @@ const getSimpleActiveRoster = async(leagueId, teamId, week) => {
 
 };
 
-//getSimpleActiveRoster('286565', '7', '15');
-
 export default getSimpleActiveRoster;

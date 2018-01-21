@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 // import logo from './logo.svg';
 import Button from "material-ui/Button";
 import NavBar from "./NavBar";
-import ScoreTable from "./ScoreTable";
+import LeagueTable from "./leagueTable/leagueTable";
 import './App.css';
-import scoreboardReader from './scoreboardReader';
+// import scoreboardReader from '.';
 
 // console.log(scoreboardReader('286565', '7', '15'));
-const getScoreBoard = async () => {
-    let scoreboard = await scoreboardReader('286565', '7', '15');
-    console.log(scoreboard);
-};
+// const getScoreBoard = async () => {
+//     let scoreboard = await scoreboardReader('286565', '7', '15');
+//     console.log(scoreboard);
+// };
 
 
 class App extends Component {
@@ -18,7 +18,7 @@ class App extends Component {
     return (
       <div className="App">
         <NavBar />
-        <ScoreTable 
+        <LeagueTable 
             style={{
                 padding: "20px"
             }}
@@ -26,7 +26,7 @@ class App extends Component {
         <Button 
             raised 
             onClick={function(){
-                getScoreBoard();
+                // getScoreBoard();
             }}
         >
             Get Data
