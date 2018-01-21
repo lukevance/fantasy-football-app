@@ -20,21 +20,23 @@ const styles = theme => ({
   },
 });
 
-// function BasicTable(props) {
+
 class BasicTable extends Component {
   constructor(props){
     super(props);
+    // hardcoded leagueId for testing purposes
     this.state = {
-      leagueId: '286565'
+      leagueId: '286565',
+      teamsList: []
     };
     this.getScoreBoard = this.getScoreBoard.bind(this);
     this.getTeams = this.getTeams.bind(this);
   }
 
   getTeams = async (leagueId) => {
-    let teamList = await leagueReader(this.state.leagueId);
-    console.log(teamList);
-    return teamList.teams;
+    let data = await leagueReader(this.state.leagueId);
+    let teamList = await data.teams;
+    return teamList;
   }
 
   getScoreBoard = async () => {
@@ -42,19 +44,16 @@ class BasicTable extends Component {
     console.log(scoreboardData);
   };
 
-  componentWillMount() {
-    let {leagueId} = this.state;
-    let teams = this.getTeams(leagueId);
-    this.setState({
-      teamList: teams,
-    });
+  async componentDidMount() {
+    // get list of teams from league reader based on leagueId passed from App
+    await this.setState({
+      teamsList: await this.getTeams(this.state.leagueId)
+    })
   }
 
   render(){
     const { classes } = this.props;
-    const {teamList} = this.state;
-    console.log('inside render');
-    console.log(teamList);
+    const { teamsList } = this.state;
     return (
       <Paper className={classes.root}>
         <Table className={classes.table}>
@@ -70,30 +69,9 @@ class BasicTable extends Component {
             </TableRow>
           </TableHead>
           <TableBody>
-            {teamList.map(team => {
-              return (
-                <TeamRow teamData={team} />
-                // <TableRow key={n.id}>
-                //   <TableCell>{n.name}</TableCell>
-                //   <TableCell numeric>{n.qb}</TableCell>
-                //   <TableCell numeric>{n.rb}</TableCell>
-                //   <TableCell numeric>{n.wr}</TableCell>
-                //   <TableCell numeric>{n.te}</TableCell>
-                //   <TableCell numeric>{n.d}</TableCell>
-                //   <TableCell numeric>{n.k}</TableCell>
-                // </TableRow>
-              );
-            })}
+              <TeamRow teamsList={teamsList}/>
           </TableBody>
         </Table>
-        <Button 
-              raised 
-              onClick={function(){
-                  this.getScoreBoard();
-              }}
-          >
-              Get Data
-        </Button>
       </Paper>
     );
   }

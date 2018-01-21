@@ -23,14 +23,6 @@ class App extends Component {
                 padding: "20px"
             }}
         />
-        <Button 
-            raised 
-            onClick={function(){
-                // getScoreBoard();
-            }}
-        >
-            Get Data
-      </Button>
       </div>
     );
   }
