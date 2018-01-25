@@ -29,28 +29,31 @@ const getSingleTeamLineup = async (leagueId, teamId, scoringPeriodId) => {
 
 
 const getSimpleActiveRoster = async(leagueId, teamId, week) => {
-    let weekRoster = await getSingleTeamLineup(leagueId, teamId, week);
-//    console.log(weekRoster);    
-    if (weekRoster.length > 0) {
-        const simpleRoster = {
-            "team": weekRoster[0].team.teamLocation + " " + weekRoster[0].team.teamNickname,
-            "points": weekRoster[0].appliedActiveRealTotal,
-            "roster": weekRoster[0].slots.map(playerObj => {
-                return {
-                    "name": playerObj.player.firstName + " " + playerObj.player.lastName,
-                    "position": playerObj.player.defaultPositionId,
-                    "activePosition": playerObj.slotCategoryId,
-                   "points": playerObj.currentPeriodRealStats.appliedStatTotal
-                };
-            }).filter(player => player.activePosition < 20),
-            // TODO: add "bench": total bench points
-        };
-        // console.log(simpleRoster);
-        return simpleRoster;
+    if (leagueId, teamId, week) {
+        let weekRoster = await getSingleTeamLineup(leagueId, teamId, week);
+        //    console.log(weekRoster);    
+        if (weekRoster.length > 0) {
+            const simpleRoster = {
+                "team": weekRoster[0].team.teamLocation + " " + weekRoster[0].team.teamNickname,
+                "points": weekRoster[0].appliedActiveRealTotal,
+                "roster": weekRoster[0].slots.map(playerObj => {
+                    return {
+                        "name": playerObj.player.firstName + " " + playerObj.player.lastName,
+                        "position": playerObj.player.defaultPositionId,
+                        "activePosition": playerObj.slotCategoryId,
+                    "points": playerObj.currentPeriodRealStats.appliedStatTotal
+                    };
+                }).filter(player => player.activePosition < 20),
+                // TODO: add "bench": total bench points
+            };
+            // console.log(simpleRoster);
+            return simpleRoster;
+        } else {
+            return "No team data returned";
+        }
     } else {
-        return "No team data returned";
+        throw new Error("Not enough params given to make request")
     }
-
 };
 
 export default getSimpleActiveRoster;

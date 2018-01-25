@@ -4,7 +4,6 @@ import { withStyles } from 'material-ui/styles';
 import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
 import Paper from 'material-ui/Paper';
 import Button from "material-ui/Button";
-import scoreBoard from '../espnReader/scoreboard';
 import leagueReader from '../espnReader/leagueInfo';
 import TeamRow from './teamRow';
 
@@ -29,7 +28,6 @@ class BasicTable extends Component {
       leagueId: '286565',
       teamsList: []
     };
-    this.getScoreBoard = this.getScoreBoard.bind(this);
     this.getTeams = this.getTeams.bind(this);
   }
 
@@ -39,21 +37,32 @@ class BasicTable extends Component {
     return teamList;
   }
 
-  getScoreBoard = async () => {
-    let scoreboardData = await scoreBoard(this.state.leagueId, '7', '15');
-    console.log(scoreboardData);
-  };
-
   async componentDidMount() {
     // get list of teams from league reader based on leagueId passed from App
     await this.setState({
       teamsList: await this.getTeams(this.state.leagueId)
-    })
+    });
   }
 
   render(){
     const { classes } = this.props;
-    const { teamsList } = this.state;
+    const { teamsList, leagueId } = this.state;
+    let teams;
+    if (teamsList.length > 0) {
+      teams = teamsList.map(team => (
+        <TeamRow 
+          team={team}
+          league={leagueId}
+          key={team.teamId}
+        />
+      ));
+  } else {
+      teams = (
+          <TableRow key="1">
+              <TableCell>"Teams Loading..."</TableCell>
+          </TableRow>
+      )
+  }
     return (
       <Paper className={classes.root}>
         <Table className={classes.table}>
@@ -69,7 +78,7 @@ class BasicTable extends Component {
             </TableRow>
           </TableHead>
           <TableBody>
-              <TeamRow teamsList={teamsList}/>
+              {teams}
           </TableBody>
         </Table>
       </Paper>
