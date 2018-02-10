@@ -22,7 +22,7 @@ const getLineups = async (leagueId, teamId, scoringPeriodId) => {
 
 const getSingleTeamLineup = async (leagueId, teamId, scoringPeriodId) => {
   const lineups = await getLineups(leagueId, teamId, scoringPeriodId);
-  const single = await lineups.filter(lineup => lineup.teamId == teamId);
+  const single = await lineups.filter(lineup => lineup.teamId === teamId);
 //   console.log(lineups);  
   return single;
 }
@@ -41,9 +41,9 @@ const getSimpleActiveRoster = async(leagueId, teamId, week) => {
                         "name": playerObj.player.firstName + " " + playerObj.player.lastName,
                         "position": playerObj.player.defaultPositionId,
                         "activePosition": playerObj.slotCategoryId,
-                    "points": playerObj.currentPeriodRealStats.appliedStatTotal
+                        "points": playerObj.currentPeriodRealStats.appliedStatTotal
                     };
-                }).filter(player => player.activePosition < 20),
+                }).filter(player => (player.activePosition < 20 ) || (player.activePosition === 23)),
                 // TODO: add "bench": total bench points
             };
             // console.log(simpleRoster);

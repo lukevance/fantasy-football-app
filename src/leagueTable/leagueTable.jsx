@@ -4,6 +4,9 @@ import { withStyles } from 'material-ui/styles';
 import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
 import Paper from 'material-ui/Paper';
 import Button from "material-ui/Button";
+import Toolbar from 'material-ui/Toolbar';
+import Typography from 'material-ui/Typography';
+
 import leagueReader from '../espnReader/leagueInfo';
 import TeamRow from './teamRow';
 
@@ -26,6 +29,7 @@ class BasicTable extends Component {
     // hardcoded leagueId for testing purposes
     this.state = {
       leagueId: '286565',
+      week: '15',
       teamsList: []
     };
     this.getTeams = this.getTeams.bind(this);
@@ -46,13 +50,14 @@ class BasicTable extends Component {
 
   render(){
     const { classes } = this.props;
-    const { teamsList, leagueId } = this.state;
+    const { teamsList, leagueId, week } = this.state;
     let teams;
     if (teamsList.length > 0) {
       teams = teamsList.map(team => (
         <TeamRow 
           team={team}
-          league={leagueId}
+          week={week}
+          leagueId={leagueId}
           key={team.teamId}
         />
       ));
@@ -65,6 +70,13 @@ class BasicTable extends Component {
   }
     return (
       <Paper className={classes.root}>
+        <div className={classes.title}>
+          <Toolbar>
+            <Typography variant="title" color="inherit">
+              Week {week} Ranks by Position
+            </Typography>
+          </Toolbar>
+        </div>
         <Table className={classes.table}>
           <TableHead>
             <TableRow>
@@ -73,6 +85,7 @@ class BasicTable extends Component {
               <TableCell numeric>RB</TableCell>
               <TableCell numeric>WR</TableCell>
               <TableCell numeric>TE</TableCell>
+              <TableCell numeric>Flex</TableCell>
               <TableCell numeric>D/ST</TableCell>
               <TableCell numeric>K</TableCell>
             </TableRow>
