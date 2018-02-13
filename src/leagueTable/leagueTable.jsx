@@ -88,6 +88,7 @@ class BasicTable extends Component {
               <TableCell numeric>Flex</TableCell>
               <TableCell numeric>D/ST</TableCell>
               <TableCell numeric>K</TableCell>
+              <TableCell numeric>Total</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

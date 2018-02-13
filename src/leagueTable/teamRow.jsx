@@ -14,7 +14,25 @@ class TeamRow extends Component {
             },
             rb: {
                 score: '...'
-            }
+            },
+            wr: {
+                score: '...'
+            },
+            te: {
+                score: '...'
+            },
+            flx: {
+                score: '...'
+            },
+            k: {
+                score: '...'
+            },
+            d: {
+                score: '...'
+            },
+            // total: {
+            //     score: '...'
+            // }
         };
         this.getTeamScore = this.getTeamScore.bind(this);
     }
@@ -22,7 +40,6 @@ class TeamRow extends Component {
     getTeamScore = async (teamId) => {
         let {leagueId, week} = this.props;
         let scoreboardData = await scoreBoard(leagueId, teamId, week);
-        // console.log(scoreboardData);
         return await scoreboardData;
     };
 
@@ -41,15 +58,17 @@ class TeamRow extends Component {
         if (!teamObj) {
             return;
         } else {
-            console.log('----------wawa----------')
-            console.log(teamObj);
-            // console.log(teamObj.roster[0].activePosition)
-            
             const totalPosScore = ( acc, cur ) => acc.points + cur.points;
-            let posPlayers = teamObj.roster.filter(player => player.activePosition == posLkp[position]);
-            console.log(posPlayers.reduce(totalPosScore));
-            let score = posPlayers.reduce(totalPosScore);
-            return score.toString();
+            let posPlayers = teamObj.roster.filter(player => player.activePosition === posLkp[position]);
+            let score= '...';
+            if (posPlayers.length > 1) {
+                score = posPlayers.reduce(totalPosScore);
+            } else {
+                console.log(posPlayers);
+                score = posPlayers[0].points;
+            }
+            let roundedScore = Math.round( score * 10 ) / 10;
+            return roundedScore.toString();
         }
     };
 
@@ -60,7 +79,7 @@ class TeamRow extends Component {
         });
         // update player scores in state
         if (this.state.teamData){
-            Object.keys(this.state).filter(key => key != 'teamData').forEach(position => {
+            Object.keys(this.state).filter(key => key != ('teamData' || 'total')).forEach(position => {
                 this.setState({
                     [position]: {
                         score: this.getPositionScore(position, this.state.teamData)
@@ -68,30 +87,23 @@ class TeamRow extends Component {
                 });
             });
         }
-        // console.log(this.state.rb.)
     }
 
     render(){
         const {team} = this.props;
         const {teamData} = this.state;
         // check if team data has been returned yet, if not return loading status
+        let positions = Object.keys(this.state).filter(key => key != ('teamData' || 'total'));
+        let playerColumns = positions.map(position => {
+            return(
+                <TableCell>{this.state[position].score}</TableCell>
+            );
+        });
         return (
             <TableRow>
                 <TableCell>{team.teamLocation + " " + team.teamNickname}</TableCell>
-                {Object.keys(this.state).filter(key => key != 'teamData').map(position => {
-                    // let score = positionScore(pos, teamData);
-                    // console.log(player.score);
-                    return(
-                        <TableCell>{this.state[position].score}</TableCell>
-                    );
-                })}
-                {/* <TableCell numeric>{positionScore('qb', teamData)}</TableCell>
-                <TableCell numeric>{positionScore('rb', teamData)}</TableCell>
-                <TableCell numeric>{positionScore('wr', teamData)}</TableCell>
-                <TableCell numeric>{positionScore('te', teamData)}</TableCell>
-                <TableCell numeric>{positionScore('flx', teamData)}</TableCell>
-                <TableCell numeric>{positionScore('d', teamData)}</TableCell>
-                <TableCell numeric>{positionScore('k', teamData)}</TableCell> */}
+                {playerColumns}
+                <TableCell numeric>{}</TableCell>
             </TableRow>
         );
     }
