@@ -29,7 +29,7 @@ const getSingleTeamLineup = async (leagueId, teamId, scoringPeriodId) => {
 
 
 const getSimpleActiveRoster = async(leagueId, teamId, week) => {
-    if (leagueId, teamId, week) {
+    if (leagueId && teamId && week) {
         let weekRoster = await getSingleTeamLineup(leagueId, teamId, week);
         //    console.log(weekRoster);    
         if (weekRoster.length > 0) {

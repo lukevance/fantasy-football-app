@@ -9,27 +9,7 @@ class TeamRow extends Component {
         this.state = {
             teamData: null,
             // set holders for player data
-            qb: {
-                score: '...'
-            },
-            rb: {
-                score: '...'
-            },
-            wr: {
-                score: '...'
-            },
-            te: {
-                score: '...'
-            },
-            flx: {
-                score: '...'
-            },
-            k: {
-                score: '...'
-            },
-            d: {
-                score: '...'
-            },
+            
             // total: {
             //     score: '...'
             // }
@@ -37,14 +17,40 @@ class TeamRow extends Component {
         this.getTeamScore = this.getTeamScore.bind(this);
     }
 
+    positionMap = {
+        qb: {
+            score: '...'
+        },
+        rb: {
+            score: '...'
+        },
+        wr: {
+            score: '...'
+        },
+        te: {
+            score: '...'
+        },
+        flx: {
+            score: '...'
+        },
+        k: {
+            score: '...'
+        },
+        d: {
+            score: '...'
+        },
+    }
+
+    // API handler to get team score data for current team in row
     getTeamScore = async (teamId) => {
         let {leagueId, week} = this.props;
         let scoreboardData = await scoreBoard(leagueId, teamId, week);
+        if (teamId === 7) {console.log(scoreboardData)};
         return await scoreboardData;
     };
 
     // TODO: MAKE THIS FUNCTIONAL!!
-    getPositionScore = (position, teamObj) => {
+    getPositionScore = (teamObj, position) => {
         const posLkp = {
             'qb': 0,
             'rb': 2,
@@ -52,7 +58,7 @@ class TeamRow extends Component {
             'te': 6,
             'flx': 23,
             'k': 17,
-            'd': 16,
+            'dst': 16,
         };
         
         if (!teamObj) {
@@ -64,13 +70,22 @@ class TeamRow extends Component {
             if (posPlayers.length > 1) {
                 score = posPlayers.reduce(totalPosScore);
             } else {
-                console.log(posPlayers);
+                // console.log(posPlayers);
                 score = posPlayers[0].points;
             }
             let roundedScore = Math.round( score * 10 ) / 10;
-            return roundedScore.toString();
+            return roundedScore;
         }
     };
+
+    getTotalScore = (teamData) => {
+        // const reducer = (accumulator, curr) => accumulator.points + curr.points;
+        const justPoints = teamData.roster.map(player => player.points);
+        console.log(justPoints);
+        let total =  justPoints.reduce((x,y) => x+y);
+        let roundedScore = Math.round( total * 10 ) / 10;
+        return roundedScore;
+    }
 
     async componentDidMount() {
         // get list of teams from league reader based on leagueId passed from App
@@ -89,23 +104,39 @@ class TeamRow extends Component {
         }
     }
 
+    postionReducer = (teamData, position) => {
+        if (teamData && position){
+            
+        }
+    }
+
     render(){
         const {team} = this.props;
         const {teamData} = this.state;
         // check if team data has been returned yet, if not return loading status
-        let positions = Object.keys(this.state).filter(key => key != ('teamData' || 'total'));
-        let playerColumns = positions.map(position => {
+        let positions = []
+        // let playerColumns = positions.map(position => {
+        //     return(
+        //         <TableCell>{this.state[position].score}</TableCell>
+        //     );
+        // });
+        if (teamData) {
             return(
-                <TableCell>{this.state[position].score}</TableCell>
-            );
-        });
-        return (
-            <TableRow>
-                <TableCell>{team.teamLocation + " " + team.teamNickname}</TableCell>
-                {playerColumns}
-                <TableCell numeric>{}</TableCell>
-            </TableRow>
-        );
+                <TableRow>
+                    <TableCell>{team.teamLocation + " " + team.teamNickname}</TableCell>
+                    <TableCell numeric key="qb">{this.getPositionScore(teamData, 'qb')}</TableCell>
+                    <TableCell numeric key="rb">{this.getPositionScore(teamData, 'rb')}</TableCell>
+                    <TableCell numeric key="wr">{this.getPositionScore(teamData, 'wr')}</TableCell>
+                    <TableCell numeric key="te">{this.getPositionScore(teamData, 'te')}</TableCell>
+                    <TableCell numeric key="flx">{this.getPositionScore(teamData, 'flx')}</TableCell>
+                    <TableCell numeric key="dst">{this.getPositionScore(teamData, 'dst')}</TableCell>
+                    <TableCell numeric key="k">{this.getPositionScore(teamData, 'k')}</TableCell>
+                    <TableCell numeric key="total">{this.getTotalScore(teamData)}</TableCell>
+                </TableRow>    
+            )
+        } else {
+            return null;
+        }
     }
 }
 
