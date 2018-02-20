@@ -8,44 +8,15 @@ class TeamRow extends Component {
         super(props);
         this.state = {
             teamData: null,
-            // set holders for player data
-            
-            // total: {
-            //     score: '...'
-            // }
         };
         this.getTeamScore = this.getTeamScore.bind(this);
-    }
-
-    positionMap = {
-        qb: {
-            score: '...'
-        },
-        rb: {
-            score: '...'
-        },
-        wr: {
-            score: '...'
-        },
-        te: {
-            score: '...'
-        },
-        flx: {
-            score: '...'
-        },
-        k: {
-            score: '...'
-        },
-        d: {
-            score: '...'
-        },
     }
 
     // API handler to get team score data for current team in row
     getTeamScore = async (teamId) => {
         let {leagueId, week} = this.props;
         let scoreboardData = await scoreBoard(leagueId, teamId, week);
-        if (teamId === 7) {console.log(scoreboardData)};
+        // if (teamId === 7) {console.log(scoreboardData)};
         return await scoreboardData;
     };
 
@@ -81,7 +52,6 @@ class TeamRow extends Component {
     getTotalScore = (teamData) => {
         // const reducer = (accumulator, curr) => accumulator.points + curr.points;
         const justPoints = teamData.roster.map(player => player.points);
-        console.log(justPoints);
         let total =  justPoints.reduce((x,y) => x+y);
         let roundedScore = Math.round( total * 10 ) / 10;
         return roundedScore;

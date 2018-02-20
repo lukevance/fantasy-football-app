@@ -9,6 +9,7 @@ import Typography from 'material-ui/Typography';
 
 import leagueReader from '../espnReader/leagueInfo';
 import TeamRow from './teamRow';
+import WeekSelectMenu from '../weekSelectMenu';
 
 const styles = theme => ({
   root: {
@@ -75,6 +76,7 @@ class BasicTable extends Component {
             <Typography variant="title" color="inherit">
               Week {week} Ranks by Position
             </Typography>
+            <WeekSelectMenu />
           </Toolbar>
         </div>
         <Table className={classes.table}>
