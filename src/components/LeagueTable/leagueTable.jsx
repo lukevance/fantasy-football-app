@@ -7,7 +7,7 @@ import Button from "material-ui/Button";
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 
-import leagueReader from '../espnReader/leagueInfo';
+import leagueReader from '../../espnReader/leagueInfo';
 import TeamRow from './teamRow';
 import WeekSelectMenu from '../weekSelectMenu';
 

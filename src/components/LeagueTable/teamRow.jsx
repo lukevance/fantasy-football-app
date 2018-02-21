@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { TableCell, TableRow } from 'material-ui/Table';
-import scoreBoard from '../espnReader/scoreboard';
+import scoreBoard from '../../espnReader/scoreboard';
 
 
 class TeamRow extends Component {
