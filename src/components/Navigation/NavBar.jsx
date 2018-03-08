@@ -10,6 +10,7 @@ import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
 import ChevronLeftIcon from 'material-ui-icons/ChevronLeft';
 import ChevronRightIcon from 'material-ui-icons/ChevronRight';
+import { Route } from "react-router-dom";
 
 import MainSideMenu from './MainSideMenu';
 import LeagueTable from "../LeagueTable/leagueTable";
@@ -127,7 +128,7 @@ class NavBar extends Component {
   };
 
   render() {
-    const { classes, theme, ceKeys, appUrl } = this.props;
+    const { classes, theme } = this.props;
     const { anchor, open, route } = this.state;
 
     const drawer = (
@@ -152,6 +153,16 @@ class NavBar extends Component {
         </div>
       </Drawer>
     );
+
+    const renderLeagueTable = () => {
+      return(
+        <LeagueTable 
+          style={{
+              padding: "20px"
+          }}
+        />
+      );
+    };
 
     return (
       <div className={classes.root}>
@@ -184,11 +195,7 @@ class NavBar extends Component {
             })}
           >
             {/* display main content based on route */}
-            <LeagueTable 
-              style={{
-                  padding: "20px"
-              }}
-            />
+            <Route path="/league-overview" component={renderLeagueTable} />
           </main>
         </div>
       </div>
