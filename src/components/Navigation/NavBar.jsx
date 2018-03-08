@@ -14,6 +14,7 @@ import { Route } from "react-router-dom";
 
 import MainSideMenu from './MainSideMenu';
 import LeagueTable from "../LeagueTable/leagueTable";
+import MyTeamTable from "../MyTeamTable/MyTeamTable";
 
 const drawerWidth = 240;
 
@@ -187,6 +188,7 @@ class NavBar extends Component {
           >
             {/* display main content based on route */}
             <Route path="/dashboard" component={renderLeagueTable} />
+            <Route path="/myteam" component={MyTeamTable} />
           </main>
         </div>
       </div>
