@@ -16,7 +16,7 @@ class MainSideMenu extends Component {
     }
 
     render(){
-        const {classes, tableChanger} = this.props;
+        const {classes} = this.props;
         return(
             <div className={classes.root}>
                 <List component="nav">

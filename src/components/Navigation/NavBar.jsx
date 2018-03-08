@@ -108,16 +108,8 @@ const styles = theme => ({
 class NavBar extends Component {
   state = {
     open: false,
-    anchor: 'left',
-    route: null
+    anchor: 'left'
   };
-
-
-  changeRoute = (newRoute) => {
-    this.setState({
-        route: newRoute
-    });
-  }
 
   handleDrawerOpen = () => {
     this.setState({ open: true });
@@ -129,7 +121,7 @@ class NavBar extends Component {
 
   render() {
     const { classes, theme } = this.props;
-    const { anchor, open, route } = this.state;
+    const { anchor, open } = this.state;
 
     const drawer = (
       <Drawer
@@ -148,7 +140,6 @@ class NavBar extends Component {
           </div>
           <MainSideMenu 
             classes={classes}
-            tableChanger={(newRoute) => this.changeRoute(newRoute)}
           />
         </div>
       </Drawer>
@@ -195,7 +186,7 @@ class NavBar extends Component {
             })}
           >
             {/* display main content based on route */}
-            <Route path="/league-overview" component={renderLeagueTable} />
+            <Route path="/dashboard" component={renderLeagueTable} />
           </main>
         </div>
       </div>
