@@ -1,4 +1,6 @@
 const fetch = require('node-fetch');
+// const env = process.env.REACT_APP_app_env;
+
 
 const request = async (url, options) => {
     const response = await fetch(url);
@@ -7,30 +9,37 @@ const request = async (url, options) => {
     return json;
 }
 
-const getBoxScore = async (leagueId, teamId, scoringPeriodId) => {
-  let url = 'http://games.espn.com/ffl/api/v2/boxscore?leagueId=' + leagueId + '&teamId=' + teamId + '&scoringPeriodId=' + scoringPeriodId + '&seasonId=2017';
-  const res = await request(url);
-//   console.log(res);
-  return res;
+const getBoxScore = async (leagueId, teamId, scoringPeriodId, env) => {
+    console.log('------------ scoreboard env ----------');
+    console.log(env);
+    if (env == 'dev1'){
+        // let data = await require('../tests/scoreboard_luke_wk15.json');
+        // return data;
+    } else {
+        let url = 'http://games.espn.com/ffl/api/v2/boxscore?leagueId=' + leagueId + '&teamId=' + teamId + '&scoringPeriodId=' + scoringPeriodId + '&seasonId=2017';
+        const res = await request(url);
+        return res;
+    }
 }
 
-const getLineups = async (leagueId, teamId, scoringPeriodId) => {
-  const lineups = await getBoxScore(leagueId, teamId, scoringPeriodId);
+const getLineups = async (leagueId, teamId, scoringPeriodId, env) => {
+  const lineups = await getBoxScore(leagueId, teamId, scoringPeriodId, env);
 //   console.log(lineups);
   return lineups.boxscore.teams;
 }
 
-const getSingleTeamLineup = async (leagueId, teamId, scoringPeriodId) => {
-  const lineups = await getLineups(leagueId, teamId, scoringPeriodId);
+const getSingleTeamLineup = async (leagueId, teamId, scoringPeriodId, env) => {
+  const lineups = await getLineups(leagueId, teamId, scoringPeriodId, env);
   const single = await lineups.filter(lineup => lineup.teamId === teamId);
 //   console.log(lineups);  
   return single;
 }
 
 
-const getSimpleActiveRoster = async(leagueId, teamId, week) => {
+const getSimpleActiveRoster = async(leagueId, teamId, week, env) => {
+    console.log('heeyyyyyy')
     if (leagueId && teamId && week) {
-        let weekRoster = await getSingleTeamLineup(leagueId, teamId, week);
+        let weekRoster = await getSingleTeamLineup(leagueId, teamId, week, env);
         //    console.log(weekRoster);    
         if (weekRoster.length > 0) {
             const simpleRoster = {
