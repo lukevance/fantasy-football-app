@@ -1,7 +1,9 @@
 # fantasy-football-app
-Fantasy football calculator app - full description coming soon
+Fantasy football insights is a data dashboard for fantasy football managers to track performance against their fellow league members.
 
 ### Usage
+
+### API functionality (BETA)
 
 #### Resources
 
