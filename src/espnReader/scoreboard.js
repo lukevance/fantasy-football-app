@@ -1,18 +1,13 @@
 const fetch = require('node-fetch');
-// const env = process.env.REACT_APP_app_env;
-
 
 const request = async (url, options) => {
     const response = await fetch(url);
     const json = await response.json();
-    //console.log(json);
     return json;
 }
 
 const getBoxScore = async (leagueId, teamId, scoringPeriodId, env) => {
-    console.log('------------ scoreboard env ----------');
-    console.log(env);
-    if (env == 'dev1'){
+    if (env === 'dev'){
         // let data = await require('../tests/scoreboard_luke_wk15.json');
         // return data;
     } else {
@@ -24,23 +19,19 @@ const getBoxScore = async (leagueId, teamId, scoringPeriodId, env) => {
 
 const getLineups = async (leagueId, teamId, scoringPeriodId, env) => {
   const lineups = await getBoxScore(leagueId, teamId, scoringPeriodId, env);
-//   console.log(lineups);
   return lineups.boxscore.teams;
 }
 
 const getSingleTeamLineup = async (leagueId, teamId, scoringPeriodId, env) => {
   const lineups = await getLineups(leagueId, teamId, scoringPeriodId, env);
   const single = await lineups.filter(lineup => lineup.teamId === teamId);
-//   console.log(lineups);  
   return single;
 }
 
 
 const getSimpleActiveRoster = async(leagueId, teamId, week, env) => {
-    console.log('heeyyyyyy')
     if (leagueId && teamId && week) {
-        let weekRoster = await getSingleTeamLineup(leagueId, teamId, week, env);
-        //    console.log(weekRoster);    
+        let weekRoster = await getSingleTeamLineup(leagueId, teamId, week, env);   
         if (weekRoster.length > 0) {
             const simpleRoster = {
                 "team": weekRoster[0].team.teamLocation + " " + weekRoster[0].team.teamNickname,
@@ -55,7 +46,6 @@ const getSimpleActiveRoster = async(leagueId, teamId, week, env) => {
                 }).filter(player => (player.activePosition < 20 ) || (player.activePosition === 23)),
                 // TODO: add "bench": total bench points
             };
-            // console.log(simpleRoster);
             return simpleRoster;
         } else {
             return "No team data returned";

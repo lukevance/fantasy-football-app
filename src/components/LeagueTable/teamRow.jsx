@@ -64,7 +64,7 @@ class TeamRow extends Component {
         });
         // update player scores in state
         if (this.state.teamData){
-            Object.keys(this.state).filter(key => key != ('teamData' || 'total')).forEach(position => {
+            Object.keys(this.state).filter(key => key !== ('teamData' || 'total')).forEach(position => {
                 this.setState({
                     [position]: {
                         score: this.getPositionScore(position, this.state.teamData)
@@ -84,7 +84,7 @@ class TeamRow extends Component {
         const {team} = this.props;
         const {teamData} = this.state;
         // check if team data has been returned yet, if not return loading status
-        let positions = []
+        // let positions = []
         // let playerColumns = positions.map(position => {
         //     return(
         //         <TableCell>{this.state[position].score}</TableCell>

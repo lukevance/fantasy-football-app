@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { TableCell, TableRow } from 'material-ui/Table';
 import scoreBoard from '../../espnReader/scoreboard';
 
@@ -14,7 +14,7 @@ class WeekRow extends Component {
 
     // API handler to get team score data for current team in row
     getTeamScore = async (teamId) => {
-        let {leagueId, week} = this.props;
+        let { leagueId, week } = this.props;
         let scoreboardData = await scoreBoard(leagueId, teamId, week);
         // if (teamId === 7) {console.log(scoreboardData)};
         return await scoreboardData;
@@ -31,20 +31,20 @@ class WeekRow extends Component {
             'k': 17,
             'dst': 16,
         };
-        
+        console.log('position score!!');
         if (!teamObj) {
             return;
         } else {
-            const totalPosScore = ( acc, cur ) => acc.points + cur.points;
+            const totalPosScore = (acc, cur) => acc.points + cur.points;
             let posPlayers = teamObj.roster.filter(player => player.activePosition === posLkp[position]);
-            let score= '...';
+            let score = '...';
             if (posPlayers.length > 1) {
                 score = posPlayers.reduce(totalPosScore);
             } else {
                 // console.log(posPlayers);
                 score = posPlayers[0].points;
             }
-            let roundedScore = Math.round( score * 10 ) / 10;
+            let roundedScore = Math.round(score * 10) / 10;
             return roundedScore;
         }
     };
@@ -52,19 +52,19 @@ class WeekRow extends Component {
     getTotalScore = (teamData) => {
         // const reducer = (accumulator, curr) => accumulator.points + curr.points;
         const justPoints = teamData.roster.map(player => player.points);
-        let total =  justPoints.reduce((x,y) => x+y);
-        let roundedScore = Math.round( total * 10 ) / 10;
+        let total = justPoints.reduce((x, y) => x + y);
+        let roundedScore = Math.round(total * 10) / 10;
         return roundedScore;
     }
 
     async componentDidMount() {
         // get list of teams from league reader based on leagueId passed from App
         await this.setState({
-          teamData: await this.getTeamScore(this.props.team.teamId)
+            teamData: await this.getTeamScore(this.props.team.teamId)
         });
         // update player scores in state
-        if (this.state.teamData){
-            Object.keys(this.state).filter(key => key != ('teamData' || 'total')).forEach(position => {
+        if (this.state.teamData) {
+            Object.keys(this.state).filter(key => key !== ('teamData' || 'total')).forEach(position => {
                 this.setState({
                     [position]: {
                         score: this.getPositionScore(position, this.state.teamData)
@@ -75,23 +75,23 @@ class WeekRow extends Component {
     }
 
     postionReducer = (teamData, position) => {
-        if (teamData && position){
-            
+        if (teamData && position) {
+
         }
     }
 
-    render(){
-        const {team, week} = this.props;
-        const {teamData} = this.state;
+    render() {
+        const { week } = this.props;
+        const { teamData } = this.state;
         // check if team data has been returned yet, if not return loading status
-        let positions = []
+        // let positions = []
         // let playerColumns = positions.map(position => {
         //     return(
         //         <TableCell>{this.state[position].score}</TableCell>
         //     );
         // });
         if (teamData) {
-            return(
+            return (
                 <TableRow>
                     <TableCell>Week {week}</TableCell>
                     <TableCell numeric key="qb">{this.getPositionScore(teamData, 'qb')}</TableCell>
@@ -102,7 +102,7 @@ class WeekRow extends Component {
                     <TableCell numeric key="dst">{this.getPositionScore(teamData, 'dst')}</TableCell>
                     <TableCell numeric key="k">{this.getPositionScore(teamData, 'k')}</TableCell>
                     <TableCell numeric key="total">{this.getTotalScore(teamData)}</TableCell>
-                </TableRow>    
+                </TableRow>
             )
         } else {
             return null;

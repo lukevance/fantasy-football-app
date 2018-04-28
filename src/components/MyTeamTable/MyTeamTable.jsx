@@ -1,9 +1,8 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
 import Paper from 'material-ui/Paper';
-import Button from "material-ui/Button";
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 
@@ -23,23 +22,23 @@ const styles = theme => ({
 
 
 class BasicTable extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     // default setting is regular season performance
     this.state = {
-        period: "regular"
+      period: "regular"
     };
   }
 
-  render(){
+  render() {
     const { classes } = this.props;
-    const { teamsId, leagueId, period} = this.state;
+    const { teamsId, leagueId, period } = this.state;
     // user state.period to create text for table title
     let titlePeriod = period[0].toUpperCase() + period.slice(1);
     // function to return array for week numbers
     const selectedWeeks = (start, end) => {
       let weeksArray = [];
-      for (let i = start; i <= end; i++){
+      for (let i = start; i <= end; i++) {
         weeksArray.push(i);
       }
       return weeksArray;
@@ -50,22 +49,23 @@ class BasicTable extends Component {
       case 'regular':
         // let weekNums = selec
         weeks = selectedWeeks(1, 13).map(week => (
+          //TODO: fix this below!!
           // <WeekRow
           //   week={week}
           // />
           <TableRow key={week}>
-              <TableCell>Week {week}</TableCell>
+            <TableCell>Week {week}</TableCell>
           </TableRow>
         ));
         break;
       default:
         weeks = (
           <TableRow key="1">
-              <TableCell>Loading...</TableCell>
-              <TableCell>Loading...</TableCell>
-              <TableCell>Loading...</TableCell>
-              <TableCell>Loading...</TableCell>
-              <TableCell>Loading...</TableCell>
+            <TableCell>Loading...</TableCell>
+            <TableCell>Loading...</TableCell>
+            <TableCell>Loading...</TableCell>
+            <TableCell>Loading...</TableCell>
+            <TableCell>Loading...</TableCell>
           </TableRow>
         )
         break;
@@ -96,13 +96,13 @@ class BasicTable extends Component {
             </TableRow>
           </TableHead>
           <TableBody>
-              {weeks}
+            {weeks}
           </TableBody>
         </Table>
       </Paper>
     );
   }
-  
+
 }
 
 BasicTable.propTypes = {
