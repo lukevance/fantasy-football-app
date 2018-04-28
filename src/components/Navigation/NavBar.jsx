@@ -14,7 +14,7 @@ import { Route } from "react-router-dom";
 
 import MainSideMenu from './MainSideMenu';
 import LeagueTable from "../LeagueTable/leagueTable";
-import MyTeamTable from "../MyTeamTable/MyTeamTable";
+import MyTeamTable from "../MyTeam/MyTeamTable";
 
 const drawerWidth = 240;
 
