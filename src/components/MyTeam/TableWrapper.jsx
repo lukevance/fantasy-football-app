@@ -5,9 +5,6 @@ import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Ta
 
 import WeekRow from './WeekRow';
 
-// make API calls for the number of weeks that were selected in MyTeam
-
-
 class TimePeriodTableWrapper extends Component {
     constructor(props) {
         super(props);
@@ -16,7 +13,7 @@ class TimePeriodTableWrapper extends Component {
 
     // decide how many weeks should be produced
     generateWeekRows(weeksArray) {
-        if (weeksArray.length > 0){
+        if (weeksArray && weeksArray.length > 0){
             return weeksArray.map(week => (
                 //TODO: fix this below!!
                 // <WeekRow

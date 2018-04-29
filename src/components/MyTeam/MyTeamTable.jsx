@@ -29,7 +29,7 @@ class MyTeam extends Component {
     super(props);
     // default setting for time period is the regular season
     this.state = {
-      period: "regular"
+      period: "post"
     };
     this.chooseTimePeriod = this.chooseTimePeriod.bind(this);
   }
@@ -50,7 +50,6 @@ class MyTeam extends Component {
       return [0];
     }
   }
-  
 
   render() {
     const { classes } = this.props;

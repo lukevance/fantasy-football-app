@@ -1,13 +1,22 @@
 import React, { Component } from 'react';
 import { TableCell, TableRow } from 'material-ui/Table';
-import scoreBoard from '../../espnReader/scoreboard';
 
+import scoreBoard from '../../espnReader/scoreboard';
+import PositionScoreCell from '../positionScoreTableCell';
 
 class WeekRow extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            teamData: null,
+            teamData: {
+                qb: '...loading',
+                rb: '...loading',
+                wr: '...loading',
+                te: '...loading',
+                flex: '...loading',
+                dst: '...loading',
+                k: '...loading',
+            },
         };
         this.getTeamScore = this.getTeamScore.bind(this);
     }
@@ -94,7 +103,8 @@ class WeekRow extends Component {
             return (
                 <TableRow>
                     <TableCell>Week {week}</TableCell>
-                    <TableCell numeric key="qb">{this.getPositionScore(teamData, 'qb')}</TableCell>
+                    <PositionScoreCell postion="qb" score={teamData.score} />
+                    {/* <TableCell numeric key="qb">{this.getPositionScore(teamData, 'qb')}</TableCell> */}
                     <TableCell numeric key="rb">{this.getPositionScore(teamData, 'rb')}</TableCell>
                     <TableCell numeric key="wr">{this.getPositionScore(teamData, 'wr')}</TableCell>
                     <TableCell numeric key="te">{this.getPositionScore(teamData, 'te')}</TableCell>
