@@ -19,6 +19,7 @@ class WeekRow extends Component {
             },
         };
         this.getTeamScore = this.getTeamScore.bind(this);
+        this.getPositionScore = this.getPositionScore.bind(this);
     }
 
     // API handler to get team score data for current team in row
@@ -102,12 +103,11 @@ class WeekRow extends Component {
             'k': 17,
             'dst': 16,
         };
-        console.log('position score!!');
         if (!teamObj) {
             return;
         } else {
             const totalPosScore = (acc, cur) => acc.points + cur.points;
-            let posPlayers = teamObj.roster.filter(player => player.activePosition === posLkp[position]);
+            const posPlayers = teamObj.roster.filter(player => player.activePosition === posLkp[position]);
             let score = '...';
             if (posPlayers.length > 1) {
                 score = posPlayers.reduce(totalPosScore);
@@ -115,15 +115,15 @@ class WeekRow extends Component {
                 // console.log(posPlayers);
                 score = posPlayers[0].points;
             }
-            let roundedScore = Math.round(score * 10) / 10;
+            const roundedScore = Math.round(score * 10) / 10;
             return roundedScore;
         }
     };
 
     getTotalScore = (teamData) => {
         // const reducer = (accumulator, curr) => accumulator.points + curr.points;
-        const justPoints = teamData.roster.map(player => player.points);
-        let total = justPoints.reduce((x, y) => x + y);
+        const total = teamData.roster.map(player => player.points).reduce((x, y) => x + y);
+        // const total = justPoints.reduce((x, y) => x + y);
         let roundedScore = Math.round(total * 10) / 10;
         return roundedScore;
     }
@@ -145,22 +145,9 @@ class WeekRow extends Component {
         }
     }
 
-    postionReducer = (teamData, position) => {
-        if (teamData && position) {
-
-        }
-    }
-
     render() {
         const { week } = this.props;
         const { teamData } = this.state;
-        // check if team data has been returned yet, if not return loading status
-        // let positions = []
-        // let playerColumns = positions.map(position => {
-        //     return(
-        //         <TableCell>{this.state[position].score}</TableCell>
-        //     );
-        // });
         if (teamData) {
             return (
                 <TableRow>
