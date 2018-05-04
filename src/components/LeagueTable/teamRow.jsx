@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { TableCell, TableRow } from 'material-ui/Table';
-import scoreBoard from '../../espnReader/scoreboard';
+import {getSimpleActiveRoster} from '../../espnReader/scoreboard';
 
 
 class TeamRow extends Component {
@@ -15,8 +15,8 @@ class TeamRow extends Component {
     // API handler to get team score data for current team in row
     getTeamScore = async (teamId) => {
         let {leagueId, week} = this.props;
-        let scoreboardData = await scoreBoard(leagueId, teamId, week);
-        // if (teamId === 7) {console.log(scoreboardData)};
+        let scoreboardData = await getSimpleActiveRoster(leagueId, teamId, week);
+        if (teamId === 7) {console.log(scoreboardData)};
         return await scoreboardData;
     };
 

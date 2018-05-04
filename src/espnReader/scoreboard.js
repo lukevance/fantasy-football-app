@@ -7,14 +7,14 @@ const request = async (url, options) => {
 }
 
 const getBoxScore = async (leagueId, teamId, scoringPeriodId, env) => {
-    if (env === 'dev'){
-        const data = require('../tests/scoreboard_luke_wk15.json');
-        return data;
-    } else {
+    // if (env === 'dev'){
+    //     const data = require('../tests/scoreboard_luke_wk15.json');
+    //     return data;
+    // } else {
         let url = 'http://games.espn.com/ffl/api/v2/boxscore?leagueId=' + leagueId + '&teamId=' + teamId + '&scoringPeriodId=' + scoringPeriodId + '&seasonId=2017';
         const res = await request(url);
         return res;
-    }
+    // }
 }
 
 const getLineups = async (leagueId, teamId, scoringPeriodId, env) => {
@@ -55,8 +55,10 @@ const getSimpleActiveRoster = async(leagueId, teamId, week, env) => {
     }
 };
 
-module.exports = {
-    getSimpleActiveRoster: getSimpleActiveRoster,
-    getLineups: getLineups,
-    getBoxScore: getBoxScore,
-} 
+export {getSimpleActiveRoster, getLineups, getBoxScore};
+
+// module.exports = {
+//     getSimpleActiveRoster: getSimpleActiveRoster,
+//     getLineups: getLineups,
+//     getBoxScore: getBoxScore,
+// } 
