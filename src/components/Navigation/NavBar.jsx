@@ -108,8 +108,7 @@ const styles = theme => ({
 
 class NavBar extends Component {
   state = {
-    open: false,
-    anchor: 'left'
+    open: false
   };
 
   handleDrawerOpen = () => {
@@ -122,7 +121,7 @@ class NavBar extends Component {
 
   render() {
     const { classes, theme } = this.props;
-    const { anchor, open } = this.state;
+    const { open } = this.state;
 
     const drawer = (
       <Drawer
@@ -130,7 +129,6 @@ class NavBar extends Component {
         classes={{
           paper: classes.drawerPaper,
         }}
-        anchor={anchor}
         open={open}
       >
         <div className={classes.drawerInner}>
@@ -162,7 +160,7 @@ class NavBar extends Component {
           <AppBar
             className={classNames(classes.appBar, {
               [classes.appBarShift]: open,
-              [classes[`appBarShift-${anchor}`]]: open,
+              [classes[`appBarShift-left`]]: open,
             })}
           >
             <Toolbar disableGutters={!open}>
@@ -181,9 +179,9 @@ class NavBar extends Component {
           </AppBar>
           {drawer}
           <main
-            className={classNames(classes.content, classes[`content-${anchor}`], {
+            className={classNames(classes.content, classes[`content-left`], {
               [classes.contentShift]: open,
-              [classes[`contentShift-${anchor}`]]: open,
+              [classes[`contentShift-left`]]: open,
             })}
           >
             {/* display main content based on route */}
