@@ -21,7 +21,7 @@
     "homepage": "https://github.com/lukevance/fantasy-football-app#readme",
     "dependencies": {
         "espn-ff-api": "^1.0.8",
-        "material-ui": "^1.0.0-beta.44",
+        "material-ui": "1.0.0-beta.17",
         "material-ui-icons": "^1.0.0-beta.17",
         "node-fetch": "^1.7.3",
         "ramda": "^0.25.0",
