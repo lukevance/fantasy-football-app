@@ -5,40 +5,40 @@ import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Ta
 
 import WeekRow from './WeekRow';
 
+// the TimePeriodTableWRapper decides how many weeks to render in the table and 
 class TimePeriodTableWrapper extends Component {
     constructor(props) {
         super(props);
-        this.generateWeekRows = this.generateWeekRows.bind(this);
-    }
-
-    // decide how many weeks should be produced
-    generateWeekRows(weeksArray) {
-        if (weeksArray && weeksArray.length > 0){
-            return weeksArray.map(week => (
-                //TODO: fix this below!!
-                // <WeekRow
-                //   week={week}
-                // />
-                <TableRow key={week}>
-                    <TableCell>Week {week}</TableCell>
-                </TableRow>
-            ));
-        } else {
-            return (
-                <TableRow key="1">
-                    <TableCell>Loading...</TableCell>
-                    <TableCell>Loading...</TableCell>
-                    <TableCell>Loading...</TableCell>
-                    <TableCell>Loading...</TableCell>
-                    <TableCell>Loading...</TableCell>
-                </TableRow>
-            )
-        }
     }
 
     render() {
         const { teamId, leagueId, weeksArray } = this.props;
-        const weekRows = this.generateWeekRows(weeksArray);
+        // decide how many weeks should be produced
+        const weekRows = () => {
+            if (weeksArray && weeksArray.length > 0) {
+                return weeksArray.map(week => (
+                    //TODO: fix this below!!
+                    <WeekRow
+                        leagueId={leagueId}
+                        teamId={teamId}
+                        week={week}
+                    />
+                    // <TableRow key={week}>
+                    //     <TableCell>Week {week}</TableCell>
+                    // </TableRow>
+                ));
+            } else {
+                return (
+                    <TableRow key="1">
+                        <TableCell>Loading...</TableCell>
+                        <TableCell>Loading...</TableCell>
+                        <TableCell>Loading...</TableCell>
+                        <TableCell>Loading...</TableCell>
+                        <TableCell>Loading...</TableCell>
+                    </TableRow>
+                )
+            }
+        };
         return (
             // <Table className={classes.table}>
             <Table>
@@ -56,7 +56,7 @@ class TimePeriodTableWrapper extends Component {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {weekRows}
+                    {weekRows()}
                 </TableBody>
             </Table>
         )

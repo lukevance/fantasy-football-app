@@ -1,96 +1,101 @@
 import React, { Component } from 'react';
 import { TableCell, TableRow } from 'material-ui/Table';
 
-import {getSimpleActiveRoster} from '../../espnReader/scoreboard';
+import { getSimpleActiveRoster } from '../../espnReader/scoreboard';
 import PositionScoreCell from '../positionScoreTableCell';
 
 class WeekRow extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            teamData: {
-                qb: '...loading',
-                rb: '...loading',
-                wr: '...loading',
-                te: '...loading',
-                flex: '...loading',
-                dst: '...loading',
-                k: '...loading',
-            },
+            postions: [
+                "qb",
+                "rb",
+                "wr",
+                "te",
+                "flex",
+                "dst",
+                "k",
+            ],
         };
         this.getTeamScore = this.getTeamScore.bind(this);
         this.getPositionScore = this.getPositionScore.bind(this);
     }
 
-    // API handler to get team score data for current team in row
-    getTeamScore = async (teamId) => {
-        let { leagueId, week } = this.props;
-        let scoreboardData = await getSimpleActiveRoster(leagueId, teamId, week);
-        // if (teamId === 7) {console.log(scoreboardData)};
-        return await scoreboardData;
+    //TODO get list of active position (this is set per league), set list of positions to state
 
-        //* -------- this function returns this result structure
-        // const res = {
-        //     team: 'Billal be Darned',
-        //     points: 119.08,
-        //     roster:
-        //         [{
-        //             name: 'Philip Rivers',
-        //             position: 1,
-        //             activePosition: 0,
-        //             points: 9.08
-        //         },
-        //         {
-        //             name: 'Melvin Gordon',
-        //             position: 2,
-        //             activePosition: 2,
-        //             points: 25.3
-        //         },
-        //         {
-        //             name: 'Jamaal Williams',
-        //             position: 2,
-        //             activePosition: 2,
-        //             points: 3
-        //         },
-        //         {
-        //             name: 'DeAndre Hopkins',
-        //             position: 3,
-        //             activePosition: 4,
-        //             points: 15.6
-        //         },
-        //         {
-        //             name: 'Dez Bryant',
-        //             position: 3,
-        //             activePosition: 4,
-        //             points: 6.3
-        //         },
-        //         {
-        //             name: 'Rob Gronkowski',
-        //             position: 4,
-        //             activePosition: 6,
-        //             points: 22.4
-        //         },
-        //         {
-        //             name: 'Marquise Goodwin',
-        //             position: 3,
-        //             activePosition: 23,
-        //             points: 16.4
-        //         },
-        //         {
-        //             name: 'Redskins D/ST',
-        //             position: 16,
-        //             activePosition: 16,
-        //             points: 12
-        //         },
-        //         {
-        //             name: 'Matt Prater',
-        //             position: 5,
-        //             activePosition: 17,
-        //             points: 9
-        //         }]
-        // }
+    // Get whole team score for the week
+    getTeamScore = async (teamId, leagueId, week) => {
+        // let scoreboardData = await getSimpleActiveRoster(leagueId, teamId, week);
+        // if (teamId === 7) {console.log(scoreboardData)};
+        // return await scoreboardData;
+
+        //* -------- getSimpleActiveRoster function returns this result structure
+        // for testing/development
+        console.log("return the team obj!");
+        return {
+            team: 'Billal be Darned',
+            points: 119.08,
+            roster:
+                [{
+                    name: 'Philip Rivers',
+                    position: 1,
+                    activePosition: 0,
+                    points: 9.08
+                },
+                {
+                    name: 'Melvin Gordon',
+                    position: 2,
+                    activePosition: 2,
+                    points: 25.3
+                },
+                {
+                    name: 'Jamaal Williams',
+                    position: 2,
+                    activePosition: 2,
+                    points: 3
+                },
+                {
+                    name: 'DeAndre Hopkins',
+                    position: 3,
+                    activePosition: 4,
+                    points: 15.6
+                },
+                {
+                    name: 'Dez Bryant',
+                    position: 3,
+                    activePosition: 4,
+                    points: 6.3
+                },
+                {
+                    name: 'Rob Gronkowski',
+                    position: 4,
+                    activePosition: 6,
+                    points: 22.4
+                },
+                {
+                    name: 'Marquise Goodwin',
+                    position: 3,
+                    activePosition: 23,
+                    points: 16.4
+                },
+                {
+                    name: 'Redskins D/ST',
+                    position: 16,
+                    activePosition: 16,
+                    points: 12
+                },
+                {
+                    name: 'Matt Prater',
+                    position: 5,
+                    activePosition: 17,
+                    points: 9
+                }]
+        }
 
     };
+
+    // cycle through positions (kept on state) pass position score obj to positionCell component
 
     // TODO: MAKE THIS FUNCTIONAL!!
     getPositionScore = (teamObj, position) => {
@@ -129,20 +134,11 @@ class WeekRow extends Component {
     }
 
     async componentDidMount() {
+        const {teamId, leagueId, week} = this.props;
         // get list of teams from league reader based on leagueId passed from App
         await this.setState({
-            teamData: await this.getTeamScore(this.props.team.teamId)
+            teamData: await this.getTeamScore(teamId, leagueId, week)
         });
-        // update player scores in state
-        if (this.state.teamData) {
-            Object.keys(this.state).filter(key => key !== ('teamData' || 'total')).forEach(position => {
-                this.setState({
-                    [position]: {
-                        score: this.getPositionScore(position, this.state.teamData)
-                    }
-                });
-            });
-        }
     }
 
     render() {
@@ -152,8 +148,8 @@ class WeekRow extends Component {
             return (
                 <TableRow>
                     <TableCell>Week {week}</TableCell>
-                    <PositionScoreCell postion="qb" score={teamData.score} />
-                    {/* <TableCell numeric key="qb">{this.getPositionScore(teamData, 'qb')}</TableCell> */}
+                    {/* <PositionScoreCell postion="qb" score={teamData.score} /> */}
+                    <TableCell numeric key="qb">{this.getPositionScore(teamData, 'qb')}</TableCell>
                     <TableCell numeric key="rb">{this.getPositionScore(teamData, 'rb')}</TableCell>
                     <TableCell numeric key="wr">{this.getPositionScore(teamData, 'wr')}</TableCell>
                     <TableCell numeric key="te">{this.getPositionScore(teamData, 'te')}</TableCell>
