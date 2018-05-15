@@ -28,7 +28,6 @@ class BasicTable extends Component {
     super(props);
     // hardcoded leagueId for testing purposes
     this.state = {
-      leagueId: '286565',
       week: '15',
       teamsList: []
     };
@@ -49,8 +48,8 @@ class BasicTable extends Component {
   }
 
   render(){
-    const { classes } = this.props;
-    const { teamsList, leagueId, week } = this.state;
+    const { classes, leagueId } = this.props;
+    const { teamsList, week } = this.state;
     let teams;
     if (teamsList.length > 0) {
       teams = teamsList.map(team => (

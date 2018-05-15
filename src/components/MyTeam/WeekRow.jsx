@@ -26,72 +26,72 @@ class WeekRow extends Component {
 
     // Get whole team score for the week
     getTeamScore = async (teamId, leagueId, week) => {
-        // let scoreboardData = await getSimpleActiveRoster(leagueId, teamId, week);
-        // if (teamId === 7) {console.log(scoreboardData)};
-        // return await scoreboardData;
+        let scoreboardData = await getSimpleActiveRoster(leagueId, teamId, week);
+        if (teamId === 7) {console.log(scoreboardData)};
+        return await scoreboardData;
 
         //* -------- getSimpleActiveRoster function returns this result structure
         // for testing/development
-        console.log("return the team obj!");
-        return {
-            team: 'Billal be Darned',
-            points: 119.08,
-            roster:
-                [{
-                    name: 'Philip Rivers',
-                    position: 1,
-                    activePosition: 0,
-                    points: 9.08
-                },
-                {
-                    name: 'Melvin Gordon',
-                    position: 2,
-                    activePosition: 2,
-                    points: 25.3
-                },
-                {
-                    name: 'Jamaal Williams',
-                    position: 2,
-                    activePosition: 2,
-                    points: 3
-                },
-                {
-                    name: 'DeAndre Hopkins',
-                    position: 3,
-                    activePosition: 4,
-                    points: 15.6
-                },
-                {
-                    name: 'Dez Bryant',
-                    position: 3,
-                    activePosition: 4,
-                    points: 6.3
-                },
-                {
-                    name: 'Rob Gronkowski',
-                    position: 4,
-                    activePosition: 6,
-                    points: 22.4
-                },
-                {
-                    name: 'Marquise Goodwin',
-                    position: 3,
-                    activePosition: 23,
-                    points: 16.4
-                },
-                {
-                    name: 'Redskins D/ST',
-                    position: 16,
-                    activePosition: 16,
-                    points: 12
-                },
-                {
-                    name: 'Matt Prater',
-                    position: 5,
-                    activePosition: 17,
-                    points: 9
-                }]
-        }
+        // console.log("return the team obj!");
+        // return {
+        //     team: 'Billal be Darned',
+        //     points: 119.08,
+        //     roster:
+        //         [{
+        //             name: 'Philip Rivers',
+        //             position: 1,
+        //             activePosition: 0,
+        //             points: 9.08
+        //         },
+        //         {
+        //             name: 'Melvin Gordon',
+        //             position: 2,
+        //             activePosition: 2,
+        //             points: 25.3
+        //         },
+        //         {
+        //             name: 'Jamaal Williams',
+        //             position: 2,
+        //             activePosition: 2,
+        //             points: 3
+        //         },
+        //         {
+        //             name: 'DeAndre Hopkins',
+        //             position: 3,
+        //             activePosition: 4,
+        //             points: 15.6
+        //         },
+        //         {
+        //             name: 'Dez Bryant',
+        //             position: 3,
+        //             activePosition: 4,
+        //             points: 6.3
+        //         },
+        //         {
+        //             name: 'Rob Gronkowski',
+        //             position: 4,
+        //             activePosition: 6,
+        //             points: 22.4
+        //         },
+        //         {
+        //             name: 'Marquise Goodwin',
+        //             position: 3,
+        //             activePosition: 23,
+        //             points: 16.4
+        //         },
+        //         {
+        //             name: 'Redskins D/ST',
+        //             position: 16,
+        //             activePosition: 16,
+        //             points: 12
+        //         },
+        //         {
+        //             name: 'Matt Prater',
+        //             position: 5,
+        //             activePosition: 17,
+        //             points: 9
+        //         }]
+        // }
 
     };
 

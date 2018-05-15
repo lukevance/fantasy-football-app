@@ -108,6 +108,7 @@ const styles = theme => ({
 
 class NavBar extends Component {
   state = {
+    leagueId: '286565',
     open: false,
     anchor: 'left'
   };
@@ -147,11 +148,13 @@ class NavBar extends Component {
     );
 
     const renderLeagueTable = () => {
+      const {leagueId} = this.props;
       return(
         <LeagueTable 
           style={{
               padding: "20px"
           }}
+          leagueId={leagueId}
         />
       );
     };
