@@ -35,6 +35,7 @@ class BasicTable extends Component {
   }
 
   getTeams = async (leagueId) => {
+    console.log('get teams!');
     let data = await leagueReader(this.state.leagueId);
     let teamList = await data.teams;
     return teamList;
@@ -51,7 +52,7 @@ class BasicTable extends Component {
     const { classes, leagueId } = this.props;
     const { teamsList, week } = this.state;
     let teams;
-    if (teamsList.length > 0) {
+    if (teamsList && teamsList.length > 0) {
       teams = teamsList.map(team => (
         <TeamRow 
           team={team}

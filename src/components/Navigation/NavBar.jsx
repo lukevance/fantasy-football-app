@@ -148,9 +148,21 @@ class NavBar extends Component {
     );
 
     const renderLeagueTable = () => {
-      const {leagueId} = this.props;
+      const {leagueId} = this.state;
       return(
         <LeagueTable 
+          style={{
+              padding: "20px"
+          }}
+          leagueId={leagueId}
+        />
+      );
+    };
+
+    const renderMyTeamPage = () => {
+      const {leagueId} = this.state;
+      return(
+        <MyTeamTable 
           style={{
               padding: "20px"
           }}
@@ -191,7 +203,7 @@ class NavBar extends Component {
           >
             {/* display main content based on route */}
             <Route path="/dashboard" component={renderLeagueTable} />
-            <Route path="/myteam" component={MyTeamTable} />
+            <Route path="/myteam" component={renderMyTeamPage} />
           </main>
         </div>
       </div>
