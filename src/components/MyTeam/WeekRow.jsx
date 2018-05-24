@@ -8,7 +8,7 @@ class WeekRow extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            postions: [
+            positions: [
                 "qb",
                 "rb",
                 "wr",
@@ -104,7 +104,7 @@ class WeekRow extends Component {
             'rb': 2,
             'wr': 4,
             'te': 6,
-            'flx': 23,
+            'flex': 23,
             'k': 17,
             'dst': 16,
         };
@@ -117,7 +117,6 @@ class WeekRow extends Component {
             if (posPlayers.length > 1) {
                 score = posPlayers.reduce(totalPosScore);
             } else {
-                // console.log(posPlayers);
                 score = posPlayers[0].points;
             }
             const roundedScore = Math.round(score * 10) / 10;
@@ -135,7 +134,6 @@ class WeekRow extends Component {
 
     async componentDidMount() {
         const {teamId, leagueId, week} = this.props;
-        console.log(teamId, leagueId, week);
         // get list of teams from league reader based on leagueId passed from App
         await this.setState({
             teamData: await this.getTeamScore(teamId, leagueId, week)
@@ -144,19 +142,16 @@ class WeekRow extends Component {
 
     render() {
         const { week } = this.props;
-        const { teamData } = this.state;
+        const { teamData, positions } = this.state;
         if (teamData) {
             return (
                 <TableRow>
                     <TableCell>Week {week}</TableCell>
-                    {/* <PositionScoreCell postion="qb" score={teamData.score} /> */}
-                    <TableCell numeric key="qb">{this.getPositionScore(teamData, 'qb')}</TableCell>
-                    <TableCell numeric key="rb">{this.getPositionScore(teamData, 'rb')}</TableCell>
-                    <TableCell numeric key="wr">{this.getPositionScore(teamData, 'wr')}</TableCell>
-                    <TableCell numeric key="te">{this.getPositionScore(teamData, 'te')}</TableCell>
-                    <TableCell numeric key="flx">{this.getPositionScore(teamData, 'flx')}</TableCell>
-                    <TableCell numeric key="dst">{this.getPositionScore(teamData, 'dst')}</TableCell>
-                    <TableCell numeric key="k">{this.getPositionScore(teamData, 'k')}</TableCell>
+                    {positions.map(pos => {
+                        return (
+                            <PositionScoreCell position={pos} score={this.getPositionScore(teamData, pos)} />        
+                        )
+                    })}
                     <TableCell numeric key="total">{this.getTotalScore(teamData)}</TableCell>
                 </TableRow>
             )
