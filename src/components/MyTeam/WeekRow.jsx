@@ -135,6 +135,7 @@ class WeekRow extends Component {
 
     async componentDidMount() {
         const {teamId, leagueId, week} = this.props;
+        console.log(teamId, leagueId, week);
         // get list of teams from league reader based on leagueId passed from App
         await this.setState({
             teamData: await this.getTeamScore(teamId, leagueId, week)

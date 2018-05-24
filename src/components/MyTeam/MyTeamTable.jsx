@@ -28,7 +28,8 @@ class MyTeam extends Component {
     super(props);
     // default setting for time period is the regular season
     this.state = {
-      period: "post"
+      period: "post",
+      teamId: 7
     };
     this.chooseTimePeriod = this.chooseTimePeriod.bind(this);
   }
@@ -51,8 +52,8 @@ class MyTeam extends Component {
   }
 
   render() {
-    const { classes } = this.props;
-    const { teamsId, leagueId, period } = this.state;
+    const { classes, leagueId } = this.props;
+    const { period, teamId } = this.state;
     // use state.period to create text for table title
     const titlePeriod = period[0].toUpperCase() + period.slice(1);
     const weeksArray = this.generateWeeksArray(period);
@@ -67,7 +68,7 @@ class MyTeam extends Component {
         </div>
         <TimePeriodTableWrapper
           weeksArray={weeksArray}
-          teamId={teamsId}
+          teamId={teamId}
           leagueId={leagueId}
         />
       </Paper>
