@@ -8,14 +8,16 @@ import Typography from 'material-ui/Typography';
 import Grid from 'material-ui/Grid';
 
 import TimePeriodTableWrapper from "./TableWrapper";
+import MyTeamPageGrid from './PageGrid';
 
 
 const styles = theme => ({
   root: {
-    width: '80%',
-    marginTop: theme.spacing.unit * 3,
-    overflowX: 'auto',
-    marginLeft: '10%'
+    // width: '80%',
+    // marginTop: theme.spacing.unit * 3,
+    // overflowX: 'auto',
+    // marginLeft: '10%'
+    flexGrow: 1,
   },
   table: {
     minWidth: 700,
@@ -59,16 +61,8 @@ class MyTeam extends Component {
     const weeksArray = this.generateWeeksArray(period);
     return (
       <div>
-        <Grid container spacing={24}>
-          <Grid item xs={12} sm={4} style={{ margin: "5px" }}>
-            <Paper >First scorecard</Paper>
-          </Grid>
-          <Grid item xs={12} sm={4} style={{ margin: "5px" }}>
-            <Paper >Second scorecard</Paper>
-          </Grid>
-          <Grid item xs={12} sm={4} style={{ margin: "5px" }}>
-            <Paper >third scorecard</Paper>
-          </Grid>
+        <Grid container spacing={16}>
+          <MyTeamPageGrid />
           <Grid item xs={12} sm={12} md={12} lg={12}>
             <Paper className={classes.root}>
               <div className={classes.title}>

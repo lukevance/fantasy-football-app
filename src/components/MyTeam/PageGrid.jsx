@@ -1,25 +1,22 @@
 import React, { Component } from 'react';
-import Grid from 'material-ui/Grid';
-import Paper from 'material-ui/Paper';
+import GridList from '@material-ui/core/GridList';
 
-class MyTeamPageGrid extends Component {
-    render(){
-        return (
-            <div>
-              <Grid container spacing={24}>
-                <Grid item xs={12} sm={4}>
-                  <Paper >First scorecard</Paper>
-                </Grid>
-                <Grid item xs={12} sm={4}>
-                  <Paper >Second scorecard</Paper>
-                </Grid>
-                <Grid item xs={12} sm={4}>
-                  <Paper >third scorecard</Paper>
-                </Grid>
-              </Grid>
-            </div>
-          );
+import HighlightCard from './HighlightCard';
+
+class HighlightsList extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {};
     }
+
+    render() {
+        return (
+            <GridList cols={3}>
+                <HighlightCard />
+                <HighlightCard />
+            </GridList>
+        );
+    };
 }
 
-export default MyTeamPageGrid;
+export default HighlightsList;
