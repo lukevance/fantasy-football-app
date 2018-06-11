@@ -5,23 +5,21 @@ import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
-import Grid from 'material-ui/Grid';
 
 import TimePeriodTableWrapper from "./TableWrapper";
-import MyTeamPageGrid from './PageGrid';
 
 
 const styles = theme => ({
-  root: {
-    // width: '80%',
-    // marginTop: theme.spacing.unit * 3,
-    // overflowX: 'auto',
-    // marginLeft: '10%'
-    flexGrow: 1,
-  },
-  table: {
-    minWidth: 700,
-  },
+  // root: {
+  //   width: '80%',
+  //   marginTop: theme.spacing.unit * 3,
+  //   overflowX: 'auto',
+  //   marginLeft: '10%'
+  //   // flexGrow: 1,
+  // },
+  // table: {
+  //   minWidth: 700,
+  // },
 });
 
 
@@ -61,25 +59,20 @@ class MyTeam extends Component {
     const weeksArray = this.generateWeeksArray(period);
     return (
       <div>
-        <Grid container spacing={16}>
-          <MyTeamPageGrid />
-          <Grid item xs={12} sm={12} md={12} lg={12}>
-            <Paper className={classes.root}>
-              <div className={classes.title}>
-                <Toolbar>
-                  <Typography variant="title" color="inherit">
-                    {titlePeriod} Season Position Breakdown
+        <Paper className={classes.root}>
+          <div className={classes.title}>
+            <Toolbar>
+              <Typography variant="title" color="inherit">
+                {titlePeriod} Season Position Breakdown
             </Typography>
-                </Toolbar>
-              </div>
-              <TimePeriodTableWrapper
-                weeksArray={weeksArray}
-                teamId={teamId}
-                leagueId={leagueId}
-              />
-            </Paper>
-          </Grid>
-        </Grid>
+            </Toolbar>
+          </div>
+          <TimePeriodTableWrapper
+            weeksArray={weeksArray}
+            teamId={teamId}
+            leagueId={leagueId}
+          />
+        </Paper>
       </div>
     );
   }

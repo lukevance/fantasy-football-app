@@ -9,7 +9,8 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
 //pages and components
-import MyTeamTable from '../MyTeam/MyTeamTable';
+// import MyTeamTable from '../MyTeam/MyTeamTable';
+import MyTeamPage from '../MyTeam/MyTeamContainer';
 
 const styles = {
   root: {
@@ -26,12 +27,13 @@ const styles = {
 
 class NavBar extends Component {
   state = {
-    leagueId: '286565'
+    leagueId: '286565',
+    teamId: 7
   }
 
   render() {
     const { classes } = this.props;
-    const { leagueId } = this.state;
+    const { leagueId, teamId } = this.state;
     return (
       <div className={classes.root}>
         <AppBar position="static">
@@ -45,8 +47,9 @@ class NavBar extends Component {
             <Button color="inherit">Login</Button>
           </Toolbar>
         </AppBar>
-        <MyTeamTable
+        <MyTeamPage
           leagueId={leagueId}
+          teamId={teamId}
         />
       </div>
     )
