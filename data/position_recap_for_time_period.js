@@ -17,25 +17,36 @@
 
 const R = require('ramda');
 const getSingleTeamLineup = require('../src/espnReader/scoreboard').getSingleTeamLineup;
-// const curry_getSingleTeamLineup = R.curry(getSingleTeamLineup);
-// const getSingleTeamfromLeague = curry_getSingleTeamLineup('286565');
-// const getWeeks = getSingleTeamfromLeague(7);
+const curry_getSingleTeamLineup = R.curry(getSingleTeamLineup);
+const getSingleTeamfromLeague = curry_getSingleTeamLineup('286565');
+const getWeeksForTeam = getSingleTeamfromLeague(7);
 
 
-const func = (pos, timePeriodStart, timePeriodEnd) => {
+const positionStatsOverPeriod = (pos, timePeriodStart, timePeriodEnd) => {
     const timePeriod = R.range(timePeriodStart, timePeriodEnd + 1);
-    timePeriod.map(async week => {
-        const weekDetails = await getSingleTeamLineup('286565', 7, week);
+    const positionReview = timePeriod.map(async week => {
+        const weekDetails = await getWeeksForTeam(week);
         const roster = weekDetails[0].slots;
-        console.log(roster);
-    })
+        const singlePosition = roster.filter(plyr => plyr.slotCategoryId === pos);
+        const simplePlayerStats = singlePosition.map(plyr => {
+            return {
+                "name": `${plyr.player.firstName} ${plyr.player.lastName}`,
+                "games": {
+                    "week": week,
+                    "score": plyr.currentPeriodRealStats.appliedStatTotal
+                }
+            }
+        });
+        console.log(simplePlayerStats)
+    });
+    // await console.log(positionReview);
 }
 
-// func('qb', 1, 4);
+positionStatsOverPeriod(0, 1, 13);
 
-const foo = async () => {
-    const week = await getSingleTeamLineup('286565', 7, 1);
-    console.log(weeks);
-}
+// const foo = async () => {
+//     const week = await getWeeksForTeam(1);
+//     console.log(week);
+// }
 
-foo();
+// foo();

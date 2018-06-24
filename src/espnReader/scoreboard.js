@@ -6,15 +6,10 @@ const request = async (url, options) => {
     return json;
 }
 
-const getBoxScore = async (leagueId, teamId, scoringPeriodId, env) => {
-    // if (env === 'dev'){
-    //     const data = require('../tests/scoreboard_luke_wk15.json');
-    //     return data;
-    // } else {
+const getBoxScore = async (leagueId, teamId, scoringPeriodId) => {
     const url = 'http://games.espn.com/ffl/api/v2/boxscore?leagueId=' + leagueId + '&teamId=' + teamId + '&scoringPeriodId=' + scoringPeriodId + '&seasonId=2017';
     const res = await request(url);
     return res;
-    // }
 }
 
 const getLineups = async (leagueId, teamId, scoringPeriodId) => {
