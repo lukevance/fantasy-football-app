@@ -22,13 +22,13 @@ const getSingleTeamfromLeague = curry_getSingleTeamLineup('286565');
 const getWeeksForTeam = getSingleTeamfromLeague(7);
 
 
-const positionStatsOverPeriod = (pos, timePeriodStart, timePeriodEnd) => {
+const positionStatsOverPeriod = async (pos, timePeriodStart, timePeriodEnd) => {
     const timePeriod = R.range(timePeriodStart, timePeriodEnd + 1);
-    const positionReview = timePeriod.map(async week => {
+    const positionReview = await Promise.all(timePeriod.map( async week => {
         const weekDetails = await getWeeksForTeam(week);
         const roster = weekDetails[0].slots;
         const singlePosition = roster.filter(plyr => plyr.slotCategoryId === pos);
-        const simplePlayerStats = singlePosition.map(plyr => {
+        const simplePlayerStats = await Promise.all(singlePosition.map(plyr => {
             return {
                 "name": `${plyr.player.firstName} ${plyr.player.lastName}`,
                 "games": {
@@ -36,17 +36,14 @@ const positionStatsOverPeriod = (pos, timePeriodStart, timePeriodEnd) => {
                     "score": plyr.currentPeriodRealStats.appliedStatTotal
                 }
             }
-        });
-        console.log(simplePlayerStats)
-    });
-    // await console.log(positionReview);
+        }));
+        return simplePlayerStats[0];
+    }));
+    return positionReview;
 }
 
-positionStatsOverPeriod(0, 1, 13);
-
-// const foo = async () => {
-//     const week = await getWeeksForTeam(1);
-//     console.log(week);
-// }
-
-// foo();
+const results = async () => {
+    const data = await positionStatsOverPeriod(0, 1, 13);
+    console.log(data);
+};
+results();
