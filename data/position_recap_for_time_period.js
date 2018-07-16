@@ -16,7 +16,7 @@
 // }]
 
 const R = require('ramda');
-const getSingleTeamLineup = require('../src/espnReader/scoreboard').getSingleTeamLineup;
+const getSingleTeamLineup = require('../src/espnReader/lineups_scores').getSingleTeamLineup;
 const curry_getSingleTeamLineup = R.curry(getSingleTeamLineup);
 const getSingleTeamfromLeague = curry_getSingleTeamLineup('286565');
 const getWeeksForTeam = getSingleTeamfromLeague(7);
