@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { TableCell, TableRow } from 'material-ui/Table';
 
-import { getSimpleActiveRoster } from '../../espnReader/scoreboard';
+import {getSimpleActiveRoster} from '../../espnReader/lineups_scores';
 import PositionScoreCell from '../positionScoreTableCell';
 
 class WeekRow extends Component {

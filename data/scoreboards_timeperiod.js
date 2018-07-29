@@ -63,6 +63,6 @@ const scoreboardsOverPeriod = async (timePeriodStart, timePeriodEnd) => {
 
 const results = async () => {
     const data = await scoreboardsOverPeriod(1, 2);
-    console.log(data);
+    console.log(JSON.stringify(data));
 };
 results();

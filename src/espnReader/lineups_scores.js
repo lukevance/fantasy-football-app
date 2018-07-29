@@ -49,7 +49,7 @@ const getSimpleActiveRoster = async (leagueId, teamId, week) => {
     }
 };
 
-module.exports = {
+export {
     getSimpleActiveRoster,
     getLineups,
     getBoxScore,
