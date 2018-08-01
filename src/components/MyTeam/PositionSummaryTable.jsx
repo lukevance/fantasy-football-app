@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core';
-import Table from '@material-ui/core';
-import TableHead from '@material-ui/core';
-import { TableRow } from 'material-ui';
-import { TableBody } from '../../../node_modules/material-ui';
+import Paper from '@material-ui/core/Paper';
+import Table from '@material-ui/core/Table';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import TableBody from '@material-ui/core/TableBody';
 
 class PositionSummaryTable extends Component {
     constructor(props) {

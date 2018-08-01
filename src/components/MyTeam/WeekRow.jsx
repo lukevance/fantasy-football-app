@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { TableCell, TableRow } from 'material-ui/Table';
+import TableRow from '@material-ui/core/TableRow';
+import TableCell from '@material-ui/core/TableCell';
 
 import {getSimpleActiveRoster} from '../../espnReader/lineups_scores';
 import PositionScoreCell from '../positionScoreTableCell';
