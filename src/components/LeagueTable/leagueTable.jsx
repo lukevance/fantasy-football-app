@@ -23,7 +23,7 @@ const styles = theme => ({
 });
 
 
-class BasicTable extends Component {
+class LeagueTable extends Component {
   constructor(props){
     super(props);
     // hardcoded leagueId for testing purposes
@@ -102,8 +102,8 @@ class BasicTable extends Component {
   
 }
 
-BasicTable.propTypes = {
+LeagueTable.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(BasicTable);
+export default withStyles(styles)(LeagueTable);
