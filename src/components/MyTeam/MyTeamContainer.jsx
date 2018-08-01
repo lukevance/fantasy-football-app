@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
 
 import HighlightCard from '../HighlightCard/HighlightCard';
-import MainTable from './MyTeamTable';
+import MyTeamTable from './MyTeamTable';
 
 class MainContentContainer extends Component {
     constructor(props){
@@ -31,10 +31,13 @@ class MainContentContainer extends Component {
                 );
             })}
                 <Grid item md={12}>
-                    <MainTable
+                    <MyTeamTable
                         teamId={teamId}
                         leagueId={leagueId}
                     />
+                </Grid>
+                <Grid item md={12}>
+                
                 </Grid>
             </Grid>
         );
