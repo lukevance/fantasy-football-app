@@ -3,6 +3,7 @@ import Grid from '@material-ui/core/Grid';
 
 import HighlightCard from '../HighlightCard/HighlightCard';
 import MyTeamTable from './MyTeamTable';
+import PositionSummary from './PositionSummaryTable';
 
 class MainContentContainer extends Component {
     constructor(props){
@@ -30,14 +31,17 @@ class MainContentContainer extends Component {
                     </Grid>
                 );
             })}
-                <Grid item md={12}>
+                {/* <Grid item md={12}>
                     <MyTeamTable
                         teamId={teamId}
                         leagueId={leagueId}
                     />
-                </Grid>
+                </Grid> */}
                 <Grid item md={12}>
-                
+                    <PositionSummary
+                        teamId={teamId}
+                        leagueId={leagueId}
+                    />
                 </Grid>
             </Grid>
         );

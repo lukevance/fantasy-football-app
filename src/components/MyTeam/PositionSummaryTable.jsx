@@ -6,12 +6,16 @@ import Table from '@material-ui/core/Table';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+
+import myTeamSummary from '../../espnReader/mock-func-my-team-season-recap';
+import PositionSummaryRow from './PositionSummaryRow';
 
 class PositionSummaryTable extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            positions: ['qb', 'rb', 'wr']
+            positions: Object.keys(myTeamSummary).filter(pos => pos === 'RB')
         }
     }
     render(){
@@ -23,7 +27,8 @@ class PositionSummaryTable extends Component {
                         <TableRow>
                             <TableCell>Position</TableCell>
                             <TableCell># of Starters</TableCell>
-                            <TableCell>Avg Score</TableCell>
+                            <TableCell>Total Position Score</TableCell>
+                            <TableCell>Avg Starter Score</TableCell>
                             <TableCell>Scoring Leader</TableCell>
                             <TableCell>Scoring Leader Avg</TableCell>
                         </TableRow>
@@ -31,16 +36,9 @@ class PositionSummaryTable extends Component {
                     <TableBody>
                         {this.state.positions.map(pos => {
                             return (
-                                <PositionSummaryRow position={pos} />
+                                <PositionSummaryRow position={pos} weeklyPosData={myTeamSummary[pos]}/>
                             )
                         })}
-                        {/* <TableRow>
-                            <TableCell>Position</TableCell>
-                            <TableCell># of Starters</TableCell>
-                            <TableCell>Avg Score</TableCell>
-                            <TableCell>Scoring Leader</TableCell>
-                            <TableCell>Scoring Leader Avg</TableCell>
-                        </TableRow> */}
                     </TableBody>
                 </Table>
             </Paper>                
@@ -52,4 +50,4 @@ PositionSummaryTable.PropTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(PositionSummaryTable);
+export default withStyles()(PositionSummaryTable);
