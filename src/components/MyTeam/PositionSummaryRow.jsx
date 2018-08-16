@@ -36,7 +36,10 @@ class PositionRow extends Component {
                 totalScore: R.sum(gamesPlayed.map(game => game.score))
             }
         })
+        console.log(R.sortBy(i => i.totalScore, playerSummary));
+        
         const scoringLeader = R.sortBy(i => i.totalScore, playerSummary)[playerSummary.length - 1];
+        
         return (
             <TableRow>
                 {/* position title */}
@@ -49,6 +52,8 @@ class PositionRow extends Component {
                 <TableCell>{R.sum(activePlayers.map(plyr => plyr.score)) / activePlayers.length}</TableCell>
                 {/* Score leader */}
                 <TableCell>{scoringLeader.name}</TableCell>
+                {/* Scoring leader average*/}
+                <TableCell>{scoringLeader.totalScore}</TableCell>
                 {/* Scoring leader average*/}
                 <TableCell>{scoringLeader.totalScore / scoringLeader.starts}</TableCell>
             </TableRow>

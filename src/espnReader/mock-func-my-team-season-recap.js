@@ -1,94 +1,179 @@
 module.exports = {
-    'QB': [{
-            name: 'Tyrod Taylor',
-            week: 1,
-            score: 22.76,
-            active: true
-        },
-        {
-            name: 'Tyrod Taylor',
-            games: {
+    'QB': [
+        [{
+                name: 'Tyrod Taylor',
+                week: 1,
+                score: 22.76,
+                active: true
+            },
+            {
+                name: 'Andrew Luck',
+                week: 1,
+                score: 0,
+                active: false
+            }
+        ],
+        [{
+                name: 'Tyrod Taylor',
                 week: 2,
-                score: 10.5
+                score: 10.5,
+                active: true
+            },
+            {
+                name: 'Andrew Luck',
+                week: 2,
+                score: 0,
+                active: false
             }
-        },
-        {
-            name: 'Philip Rivers',
-            games: {
+        ],
+        [{
+                name: 'Philip Rivers',
                 week: 3,
-                score: 3.48
+                score: 3.48,
+                active: true
+            },
+            {
+                name: 'Andrew Luck',
+                week: 3,
+                score: 0,
+                active: false
             }
-        },
-        {
-            name: 'Tyrod Taylor',
-            games: {
+        ],
+        [{
+                name: 'Tyrod Taylor',
                 week: 4,
-                score: 14.48
+                score: 14.48,
+                active: true
+            },
+            {
+                name: 'Andrew Luck',
+                week: 4,
+                score: 0,
+                active: false
             }
-        },
-        {
-            name: 'Deshaun Watson',
-            games: {
+        ],
+        [{
+                name: 'Deshaun Watson',
                 week: 5,
-                score: 45.54
+                score: 45.54,
+                active: true
+            },
+            {
+                name: 'Andrew Luck',
+                week: 5,
+                score: 0,
+                active: false
             }
-        },
-        {
-            name: 'Deshaun Watson',
-            games: {
+        ],
+        [{
+                name: 'Deshaun Watson',
                 week: 6,
-                score: 29.3
+                score: 29.3,
+                active: true
+            },
+            {
+                name: 'Andrew Luck',
+                week: 6,
+                score: 0,
+                active: false
             }
-        },
-        {
-            name: 'Jared Goff',
-            games: {
+        ],
+        [{
+                name: 'Jared Goff',
                 week: 7,
-                score: 20.7
+                score: 20.7,
+                active: true
+            },
+            {
+                name: 'Deshaun Watson',
+                week: 7,
+                score: undefined,
+                active: false
             }
-        },
-        {
+        ],
+        [{
             name: 'Deshaun Watson',
-            games: {
-                week: 8,
-                score: 40.78
-            }
-        },
-        {
-            name: 'Jared Goff',
-            games: {
+            week: 8,
+            score: 40.78,
+            active: true
+        }],
+        [{
+                name: 'Jared Goff',
                 week: 9,
-                score: 36.44
+                score: 36.44,
+                active: true
+            },
+            {
+                name: 'Deshaun Watson',
+                week: 9,
+                score: 0,
+                active: false
             }
-        },
-        {
-            name: 'Jared Goff',
-            games: {
+        ],
+        [{
+                name: 'Jared Goff',
                 week: 10,
-                score: 32.5
+                score: 32.5,
+                active: true
+            },
+            {
+                name: 'Deshaun Watson',
+                week: 10,
+                score: 0,
+                active: false
             }
-        },
-        {
-            name: 'Jay Cutler',
-            games: {
+        ],
+        [{
+                name: 'Jay Cutler',
                 week: 11,
-                score: 3.42
+                score: 3.42,
+                active: true
+            },
+            {
+                name: 'Deshaun Watson',
+                week: 11,
+                score: 0,
+                active: false
+            },
+            {
+                name: 'Jared Goff',
+                week: 11,
+                score: 9.8,
+                active: false
             }
-        },
-        {
-            name: 'Jared Goff',
-            games: {
+        ],
+        [{
+                name: 'Jared Goff',
                 week: 12,
-                score: 23.86
+                score: 23.86,
+                active: true
+            },
+            {
+                name: 'Deshaun Watson',
+                week: 12,
+                score: 0,
+                active: false
             }
-        },
-        {
-            name: 'Philip Rivers',
-            games: {
+        ],
+        [{
+                name: 'Philip Rivers',
                 week: 13,
-                score: 19.56
+                score: 19.56,
+                active: true
+            },
+            {
+                name: 'Deshaun Watson',
+                week: 13,
+                score: 0,
+                active: false
+            },
+            {
+                name: 'Jared Goff',
+                week: 13,
+                score: 19,
+                active: false
             }
-        }
+        ]
     ],
     'RB': [
         [{

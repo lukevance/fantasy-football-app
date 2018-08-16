@@ -15,7 +15,7 @@ class PositionSummaryTable extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            positions: Object.keys(myTeamSummary).filter(pos => pos === 'RB')
+            positions: Object.keys(myTeamSummary).filter(pos => pos === 'RB' || pos === 'QB')
         }
     }
     render(){
@@ -30,6 +30,7 @@ class PositionSummaryTable extends Component {
                             <TableCell>Total Position Score</TableCell>
                             <TableCell>Avg Starter Score</TableCell>
                             <TableCell>Scoring Leader</TableCell>
+                            <TableCell>Scoring Leader Total</TableCell>
                             <TableCell>Scoring Leader Avg</TableCell>
                         </TableRow>
                     </TableHead>
