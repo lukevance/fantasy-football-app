@@ -235,7 +235,7 @@ module.exports = {
                 name: 'James White',
                 week: 2,
                 score: 12.8,
-                active: false
+                active: true
             },
             {
                 name: 'Bilal Powell',
@@ -278,7 +278,7 @@ module.exports = {
                 name: 'James White',
                 week: 3,
                 score: 3.2,
-                active: false
+                active: true
             },
             {
                 name: 'Bilal Powell',
@@ -352,7 +352,7 @@ module.exports = {
                 name: 'Bilal Powell',
                 week: 5,
                 score: 4.9,
-                active: false
+                active: true
             },
             {
                 name: 'Ty Montgomery',
@@ -426,7 +426,7 @@ module.exports = {
                 name: 'Dion Lewis',
                 week: 7,
                 score: 8.6,
-                active: false
+                active: true
             },
             {
                 name: 'Bilal Powell',
@@ -500,7 +500,7 @@ module.exports = {
                 name: 'Theo Riddick',
                 week: 9,
                 score: 8.9,
-                active: false
+                active: true
             },
             {
                 name: 'Ty Montgomery',
@@ -543,7 +543,7 @@ module.exports = {
                 name: 'James White',
                 week: 10,
                 score: 9,
-                active: false
+                active: true
             },
             {
                 name: 'Ty Montgomery',
@@ -586,7 +586,7 @@ module.exports = {
                 name: 'James White',
                 week: 11,
                 score: 1.3,
-                active: false
+                active: true
             },
             {
                 name: 'Ty Montgomery',
@@ -629,7 +629,7 @@ module.exports = {
                 name: 'Danny Woodhead',
                 week: 12,
                 score: 6.1,
-                active: false
+                active: true
             },
             {
                 name: 'Ty Montgomery',
@@ -672,7 +672,7 @@ module.exports = {
                 name: 'Danny Woodhead',
                 week: 13,
                 score: 3.1,
-                active: false
+                active: true
             },
             {
                 name: 'Ty Montgomery',
@@ -700,7 +700,297 @@ module.exports = {
             }
         ]
     ],
-    'WR': [],
+    'WR': [
+        [{
+                name: 'Julio Jones',
+                week: 1,
+                score: 8.2,
+                active: true
+            },
+            {
+                name: 'DeAndre Hopkins',
+                week: 1,
+                score: 14.3,
+                active: true
+            },
+            {
+                name: 'Sammy Watkins',
+                week: 1,
+                score: 7.8,
+                active: true
+            },
+            {
+                name: 'Pierre Garcon',
+                week: 1,
+                score: 10.5,
+                active: false
+            }
+        ],
+        [{
+                name: 'Julio Jones',
+                week: 2,
+                score: 12.8,
+                active: true
+            },
+            {
+                name: 'DeAndre Hopkins',
+                week: 2,
+                score: 10.1,
+                active: true
+            },
+            {
+                name: 'Sammy Watkins',
+                week: 2,
+                score: 3.8,
+                active: false
+            },
+            {
+                name: 'Pierre Garcon',
+                week: 2,
+                score: 3.8,
+                active: false
+            }
+        ],
+        [{
+                name: 'Julio Jones',
+                week: 3,
+                score: 11.9,
+                active: true
+            },
+            {
+                name: 'DeAndre Hopkins',
+                week: 3,
+                score: 10.4,
+                active: true
+            },
+            {
+                name: 'Sammy Watkins',
+                week: 3,
+                score: 25,
+                active: false
+            },
+            {
+                name: 'Pierre Garcon',
+                week: 3,
+                score: 17,
+                active: false
+            }
+        ],
+        [{
+                name: 'Julio Jones',
+                week: 4,
+                score: 4.2,
+                active: true
+            },
+            {
+                name: 'DeAndre Hopkins',
+                week: 4,
+                score: 20.7,
+                active: true
+            },
+            {
+                name: 'Sammy Watkins',
+                week: 4,
+                score: 2.1,
+                active: true
+            },
+            {
+                name: 'Pierre Garcon',
+                week: 4,
+                score: 5.2,
+                active: false
+            }
+        ],
+        [{
+                name: 'DeAndre Hopkins',
+                week: 5,
+                score: 24.8,
+                active: true
+            },
+            {
+                name: 'Pierre Garcon',
+                week: 5,
+                score: 12.6,
+                active: true
+            },
+            {
+                name: 'Julio Jones',
+                week: 5,
+                score: undefined,
+                active: false
+            },
+            {
+                name: 'Sammy Watkins',
+                week: 5,
+                score: 0,
+                active: false
+            }
+        ],
+        [{
+                name: 'Julio Jones',
+                week: 6,
+                score: 9.6,
+                active: true
+            },
+            {
+                name: 'DeAndre Hopkins',
+                week: 6,
+                score: 8.7,
+                active: true
+            },
+            {
+                name: 'Pierre Garcon',
+                week: 6,
+                score: 7.5,
+                active: true
+            },
+            {
+                name: 'Sammy Watkins',
+                week: 6,
+                score: 1.5,
+                active: false
+            }
+        ],
+        [{
+                name: 'Julio Jones',
+                week: 7,
+                score: 19.5,
+                active: true
+            },
+            {
+                name: 'Pierre Garcon',
+                week: 7,
+                score: 6.9,
+                active: true
+            },
+            {
+                name: 'DeAndre Hopkins',
+                week: 7,
+                score: undefined,
+                active: false
+            },
+            {
+                name: 'Sammy Watkins',
+                week: 7,
+                score: 5.4,
+                active: false
+            }
+        ],
+        [{
+                name: 'Julio Jones',
+                week: 8,
+                score: 8.6,
+                active: true
+            },
+            {
+                name: 'DeAndre Hopkins',
+                week: 8,
+                score: 31.6,
+                active: true
+            },
+            {
+                name: 'Pierre Garcon',
+                week: 8,
+                score: 2.5,
+                active: true
+            },
+            {
+                name: 'Sammy Watkins',
+                week: 8,
+                score: undefined,
+                active: false
+            },
+            {
+                name: 'John Ross',
+                week: 8,
+                score: 0,
+                active: false
+            }
+        ],
+        [{
+                name: 'DeAndre Hopkins',
+                week: 9,
+                score: 17,
+                active: true
+            },
+            {
+                name: 'Dez Bryant',
+                week: 9,
+                score: 9.7,
+                active: true
+            },
+            {
+                name: 'Sammy Watkins',
+                week: 9,
+                score: 13.1,
+                active: false
+            }
+        ],
+        [{
+                name: 'DeAndre Hopkins',
+                week: 10,
+                score: 13.9,
+                active: true
+            },
+            {
+                name: 'Dez Bryant',
+                week: 10,
+                score: 5.5,
+                active: true
+            },
+            {
+                name: 'Sammy Watkins',
+                week: 10,
+                score: 10.9,
+                active: false
+            }
+        ],
+        [{
+                name: 'DeAndre Hopkins',
+                week: 11,
+                score: 15.2,
+                active: true
+            },
+            {
+                name: 'Dez Bryant',
+                week: 11,
+                score: 9.5,
+                active: true
+            }
+        ],
+        [{
+                name: 'DeAndre Hopkins',
+                week: 12,
+                score: 15.3,
+                active: true
+            },
+            {
+                name: 'Dez Bryant',
+                week: 12,
+                score: 4.9,
+                active: true
+            },
+            {
+                name: 'Jeremy Maclin',
+                week: 12,
+                score: 1,
+                active: false
+            }
+        ],
+        [{
+                name: 'DeAndre Hopkins',
+                week: 13,
+                score: 11.2,
+                active: true
+            },
+            {
+                name: 'Dez Bryant',
+                week: 13,
+                score: 14.1,
+                active: true
+            }
+        ]
+    ],
     'TE': [],
     'D': [],
     'K': []

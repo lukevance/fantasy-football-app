@@ -15,7 +15,7 @@ class PositionSummaryTable extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            positions: Object.keys(myTeamSummary).filter(pos => pos === 'RB' || pos === 'QB')
+            positions: Object.keys(myTeamSummary).filter(pos => pos !== 'K' && pos !== 'TE' && pos !== 'D')
         }
     }
     render(){
