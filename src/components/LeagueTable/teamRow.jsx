@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { TableCell, TableRow } from 'material-ui/Table';
-import scoreBoard from '../../espnReader/scoreboard';
+import {getSimpleActiveRoster} from '../../espnReader/scoreboard';
 
 
 class TeamRow extends Component {
@@ -15,8 +15,8 @@ class TeamRow extends Component {
     // API handler to get team score data for current team in row
     getTeamScore = async (teamId) => {
         let {leagueId, week} = this.props;
-        let scoreboardData = await scoreBoard(leagueId, teamId, week);
-        // if (teamId === 7) {console.log(scoreboardData)};
+        let scoreboardData = await getSimpleActiveRoster(leagueId, teamId, week);
+        if (teamId === 7) {console.log(scoreboardData)};
         return await scoreboardData;
     };
 
@@ -64,7 +64,7 @@ class TeamRow extends Component {
         });
         // update player scores in state
         if (this.state.teamData){
-            Object.keys(this.state).filter(key => key != ('teamData' || 'total')).forEach(position => {
+            Object.keys(this.state).filter(key => key !== ('teamData' || 'total')).forEach(position => {
                 this.setState({
                     [position]: {
                         score: this.getPositionScore(position, this.state.teamData)
@@ -84,7 +84,7 @@ class TeamRow extends Component {
         const {team} = this.props;
         const {teamData} = this.state;
         // check if team data has been returned yet, if not return loading status
-        let positions = []
+        // let positions = []
         // let playerColumns = positions.map(position => {
         //     return(
         //         <TableCell>{this.state[position].score}</TableCell>

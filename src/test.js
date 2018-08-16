@@ -1,4 +1,4 @@
-const scoreBoard = require('./scoreboardReader');
+const scoreBoard = require('./espnReader/scoreboard');
 
 const getScoreBoard = async() => {
     let scoreboard = await scoreBoard('286565', '7', '15');

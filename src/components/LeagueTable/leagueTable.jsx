@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
 import Paper from 'material-ui/Paper';
-import Button from "material-ui/Button";
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 
@@ -24,12 +23,11 @@ const styles = theme => ({
 });
 
 
-class BasicTable extends Component {
+class LeagueTable extends Component {
   constructor(props){
     super(props);
     // hardcoded leagueId for testing purposes
     this.state = {
-      leagueId: '286565',
       week: '15',
       teamsList: []
     };
@@ -37,6 +35,7 @@ class BasicTable extends Component {
   }
 
   getTeams = async (leagueId) => {
+    console.log('get teams!');
     let data = await leagueReader(this.state.leagueId);
     let teamList = await data.teams;
     return teamList;
@@ -50,10 +49,10 @@ class BasicTable extends Component {
   }
 
   render(){
-    const { classes } = this.props;
-    const { teamsList, leagueId, week } = this.state;
+    const { classes, leagueId } = this.props;
+    const { teamsList, week } = this.state;
     let teams;
-    if (teamsList.length > 0) {
+    if (teamsList && teamsList.length > 0) {
       teams = teamsList.map(team => (
         <TeamRow 
           team={team}
@@ -103,8 +102,8 @@ class BasicTable extends Component {
   
 }
 
-BasicTable.propTypes = {
+LeagueTable.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(BasicTable);
+export default withStyles(styles)(LeagueTable);
